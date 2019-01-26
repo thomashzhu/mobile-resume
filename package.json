@@ -1,0 +1,48 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  },
+  "dependencies": {
+    "expo": "^32.0.0",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-navigation": "^3.0.9",
+    "react-navigation-redux-helpers": "^2.0.9",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/color": "^3.0.0",
+    "@types/enzyme": "^3.1.15",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/expo": "^31.0.8",
+    "@types/jest": "^23.3.13",
+    "@types/react": "^16.7.20",
+    "@types/react-native": "^0.57.32",
+    "@types/react-navigation": "^3.0.1",
+    "@types/react-redux": "^7.0.1",
+    "@types/react-test-renderer": "^16.0.3",
+    "babel-preset-expo": "^5.0.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.8.0",
+    "jest": "^24.0.0",
+    "react-native-typescript-transformer": "^1.2.11",
+    "react-test-renderer": "^16.7.0",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.1",
+    "typescript": "~3.1.0",
+    "gts": "^0.9.0"
+  },
+  "private": true
+}
