@@ -1,11 +1,10 @@
 import React from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
 
@@ -17,23 +16,23 @@ type State = {
   
 };
 
-export class ContactScreen extends React.Component<Props, State> {
-  static navigationOptions = ({ navigation: { navigate }}) => ({
-    title: 'Contact Me',
-    headerRight: (
-      <MaterialIcons
-        name="info-outline"
-        size={24}
+export class AboutAppScreen extends React.Component<Props, State> {
+  static navigationOptions = ({ navigation: { goBack } }) => ({
+    title: 'About this app',
+    headerLeft: (
+      <TouchableOpacity
         style={styles.headerButton}
-        onPress={() => navigate('AboutApp')}
-      />
+        onPress={() => goBack()}
+      >
+        <Text>Done</Text>
+      </TouchableOpacity>
     ),
   });
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Contact</Text>
+        <Text>About this app</Text>
       </View>
     );
   }

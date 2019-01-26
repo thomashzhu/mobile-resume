@@ -6,7 +6,7 @@ import { HighlightsScreen } from '../screens/HighlightsScreen';
 import { ExperiencesScreen } from '../screens/ExperiencesScreen';
 import { SkillsScreen } from '../screens/SkillsScreen';
 import { RecognitionsScreen } from '../screens/RecognitionsScreen';
-import { ContactScreen } from '../screens/ContactScreen';
+import { ContactStack } from './ContactStack';
 import { colors } from '../values/colors';
 
 const getTabBarIcon = (icon: string) => ({ tintColor }: { tintColor: string }) => (
@@ -47,7 +47,7 @@ export const HomeTabs = createBottomTabNavigator({
     },
   },
   Contact: {
-    screen: ContactScreen,
+    screen: ContactStack,
     navigationOptions: {
       tabBarIcon: getTabBarIcon('envelope'),
       tabBarLabel: 'Contact',
