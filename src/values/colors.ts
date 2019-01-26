@@ -1,5 +1,6 @@
+import Color from 'color';
+
 export const colors = {
-  // Add string literals (for style constants), or Color instances (for props)
-  // Color Docs: https://github.com/qix-/color#readme
-  
+  primary: Color('#1CB1B5'),
+  secondary: Color('#595959'),
 };
