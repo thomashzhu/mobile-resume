@@ -6,15 +6,20 @@ import {
 import { createAppContainer } from 'react-navigation';
 
 import { HomeTabs } from './src/navigation/HomeTabs';
+import { createStore } from 'redux';
+import { reducers } from './src/reducers';
+import { Provider } from 'react-redux';
 
 const AppContainer = createAppContainer(HomeTabs);
 
 class App extends React.Component {
+  store = createStore(reducers);
+
   render() {
     return (
-      <View style={styles.container}>
+      <Provider store={this.store}>
         <AppContainer />
-      </View>
+      </Provider>
     );
   }
 }

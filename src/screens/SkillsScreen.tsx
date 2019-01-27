@@ -12,7 +12,7 @@ import { Constants } from 'expo';
 
 import { SkillCell } from '../components/SkillCell';
 import { colors } from '../values/colors';
-import { SKILLS_DATA } from '../data';
+import { SKILLS_DATA } from '../resources/data';
 
 export class SkillsScreen extends React.Component {
   sectionData = SKILLS_DATA.map(section => ({

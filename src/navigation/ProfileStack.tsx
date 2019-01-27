@@ -1,11 +1,15 @@
 import { StyleSheet } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
+import { ProfileScreen } from '../screens/ProfileScreen';
 import { ContactScreen } from '../screens/ContactScreen';
 import { AboutAppScreen } from '../screens/AboutAppScreen';
 import { colors } from '../values/colors';
 
-export const ContactStack = createStackNavigator({
+export const ProfileStack = createStackNavigator({
+  Profile: {
+    screen: ProfileScreen,
+  },
   Contact: {
     screen: ContactScreen,
   },
@@ -13,7 +17,7 @@ export const ContactStack = createStackNavigator({
     screen: AboutAppScreen,
   },
 }, {
-  initialRouteName: 'Contact',
+  initialRouteName: 'Profile',
   navigationOptions: {
     headerStyle: {
       backgroundColor: '#FFFFFF',

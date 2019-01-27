@@ -6,7 +6,7 @@ import { HighlightsScreen } from '../screens/HighlightsScreen';
 import { ExperiencesScreen } from '../screens/ExperiencesScreen';
 import { SkillsScreen } from '../screens/SkillsScreen';
 import { RecognitionsScreen } from '../screens/RecognitionsScreen';
-import { ContactStack } from './ContactStack';
+import { ProfileStack } from './ProfileStack';
 import { colors } from '../values/colors';
 
 const getTabBarIcon = (icon: string) => ({ tintColor }: { tintColor: string }) => (
@@ -46,11 +46,11 @@ export const HomeTabs = createBottomTabNavigator({
       tabBarLabel: 'Recognitions',
     },
   },
-  Contact: {
-    screen: ContactStack,
+  Profile: {
+    screen: ProfileStack,
     navigationOptions: {
       tabBarIcon: getTabBarIcon('envelope'),
-      tabBarLabel: 'Contact',
+      tabBarLabel: 'Profile',
     },
   },
 }, {
