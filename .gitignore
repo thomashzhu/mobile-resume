@@ -64,4 +64,4 @@ typings/
 .expo/
 
 # private information (e.g. API keys, etc.)
-private/
+src/values/secrets.ts
