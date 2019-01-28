@@ -1,13 +1,19 @@
 import React from 'react';
 import {
+  Platform,
   ScrollView,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
+import { Constants } from 'expo';
 import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
+
+const HORIZONTAL_SPACE = 16;
+const VERTICAL_SPACE = 16;
 
 import { colors } from '../values/colors';
 import { CircleButton } from '../components/CircleButton';
@@ -31,7 +37,33 @@ export class AboutAppScreen extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
         <ScrollView>
+          <View style={styles.paragraph}>
+            <Text style={styles.text}>
+              This app is for showcase and personal coding practice only. Therefore I try to use as few third-party libraries 
+              (especially UI libraries) as possible.
+            </Text>
+          </View>
 
+          <View style={styles.paragraph}>
+            <Text style={styles.text}>Here is a list of libraries used in this app:</Text>
+            <Text style={styles.text}> - react & react-native </Text>
+            <Text style={styles.text}> - react navigation </Text>
+            <Text style={styles.text}> - redux & react-redux </Text>
+            <Text style={styles.text}> - qs </Text>
+            <Text style={styles.text}> - validator </Text>
+          </View>
+
+          <View style={styles.paragraph}>
+            <Text style={styles.text}>
+              I will be randomly improving this app as I learn more about React Native. Some improvements include integrating 
+              Mailgun to send direct email to my mailbox, use folding cells for list display, and add app intro sliders, etc. Of 
+              course, if there's a change on my resume, I will update here as well.
+            </Text>
+          </View>
+
+          <View style={styles.paragraph}>
+            <Text style={styles.text}>That's it for now. Thank you. =]</Text>
+          </View>
         </ScrollView>
 
         <CircleButton
@@ -43,18 +75,30 @@ export class AboutAppScreen extends React.Component<Props, State> {
           onPress={() => navigation.goBack()}
           style={styles.circleButton}
         />
+        
       </View>
     );
   }
 }
 
+const statusBarHeight = (Platform.OS === 'ios' && Number(`${Platform.Version}`) >= 11
+  ? 0
+  : Constants.statusBarHeight
+);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: statusBarHeight + VERTICAL_SPACE,
+    paddingHorizontal: HORIZONTAL_SPACE,
   },
-  headerButton: {
-    color: `${colors.primary}`,
-    paddingHorizontal: 16,
+  paragraph: {
+    marginBottom: 10,
+  },
+  text: {
+    color: `${colors.secondary}`,
+    fontSize: 16,
+    lineHeight: 24,
   },
   circleButton: {
     position: 'absolute',

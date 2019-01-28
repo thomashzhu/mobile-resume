@@ -2,9 +2,7 @@ import React from 'react';
 import {
   Platform,
   SafeAreaView,
-  ScrollView,
   StyleSheet,
-  Text,
 } from 'react-native';
 import {
   NavigationScreenConfig,
