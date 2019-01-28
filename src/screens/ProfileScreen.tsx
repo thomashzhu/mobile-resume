@@ -12,6 +12,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
 import { IconText } from '../components/IconText';
+import { LanguageCell } from '../components/LanguageCell';
+import { Divider } from '../components/Divider';
 
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
@@ -94,6 +96,24 @@ export class ProfileScreen extends React.Component<Props, State> {
           <Text style={styles.quote}>I’m a self-motivated mobile developer who always seeks to learn new things. Formerly a financial analyst.</Text>
         </View>
 
+        <View style={styles.languageBlock}>
+          <LanguageCell
+            name="English"
+            description="Proficient"
+            stars={4}
+          />
+          <Divider
+            horizontal={false}
+            padding={VERTICAL_SPACE / 2}
+            spacing={HORIZONTAL_SPACE}
+          />
+          <LanguageCell
+            name="Chinese"
+            description="Native"
+            stars={5}
+          />
+        </View>
+
         <View style={styles.map}>
           <MapView
             initialRegion={{
@@ -146,14 +166,20 @@ const styles = StyleSheet.create({
   quoteBlock: {
     backgroundColor: `${colors.quoteBackground}`,
     paddingHorizontal: HORIZONTAL_SPACE,
-    paddingVertical: VERTICAL_SPACE,
+    paddingVertical: HORIZONTAL_SPACE,
+    marginBottom: VERTICAL_SPACE,
   },
   quote: {
     color: `${colors.secondary}`,
     fontStyle: 'italic',
   },
+  languageBlock: {
+    flexDirection: 'row',
+    height: 42,
+    paddingHorizontal: HORIZONTAL_SPACE,
+    marginBottom: VERTICAL_SPACE,
+  },
   map: {
     flex: 1,
-    marginTop: VERTICAL_SPACE,
   },
 });
