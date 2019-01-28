@@ -7,15 +7,12 @@ import {
   StyleSheet,
   Text,
   View,
-  ListRenderItemInfo,
-  FlatList,
 } from 'react-native';
 import { Constants } from 'expo';
+import { EvilIcons } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
 import { RECOGNITION_DATA } from '../resources/data';
-import { Slider } from '../values/types';
-import { SliderPage } from '../components/SliderPage';
 
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
@@ -37,7 +34,7 @@ export class RecognitionScreen extends React.Component<Props, State> {
 
   renderRecognitionSectionListItem = (info: SectionListRenderItemInfo<string>) => {
     const { item, index } = info;
-
+    
     return (
       <Text
         key={index}
@@ -59,6 +56,14 @@ export class RecognitionScreen extends React.Component<Props, State> {
           stickySectionHeadersEnabled={false}
           style={styles.list}
         />
+
+        <View style={styles.iconContainer}>
+          <EvilIcons
+            name="trophy"
+            size={240}
+            style={styles.backgroundIcon}
+          />
+        </View>
       </View>
     );
   }
@@ -77,15 +82,26 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingTop: VERTICAL_SPACE,
+    backgroundColor: null,
   },
   header: {
     color: `${colors.primary}`,
-    fontSize: 18,
+    fontSize: 22,
     paddingVertical: 8,
     textTransform: 'uppercase',
   },
   description: {
     color: `${colors.secondary}`,
-    lineHeight: 28,
+    fontSize: 15,
+    lineHeight: 35,
+  },
+  iconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backgroundIcon: {
+    position: 'absolute',
+    bottom: 12,
+    color: `${colors.black.alpha(0.15)}`,
   },
 });
