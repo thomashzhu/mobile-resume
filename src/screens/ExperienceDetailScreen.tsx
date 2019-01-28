@@ -1,7 +1,10 @@
 import React from 'react';
 import {
+  Platform,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
+  Text,
 } from 'react-native';
 import {
   NavigationScreenConfig,
@@ -9,10 +12,11 @@ import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Constants } from 'expo';
 
 import { ContentCell } from '../components/ContentCell';
 import { colors } from '../values/colors';
+import { CircleButton } from '../components/CircleButton';
 
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
@@ -26,18 +30,16 @@ interface NavigationFunctionComponent<T> extends React.FunctionComponent<T> {
 }
 
 export const ExperienceDetailScreen: NavigationFunctionComponent<Props> = (props) => {
-  const { navigation: { state: { params }}} = props;
+  const { navigation: { goBack, state: { params }}} = props;
   const { experience } = params;
   const {
     id, title, organization, fromDate, toDate, location, descriptions,
   } = experience;
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      style={styles.container}
-    >
+    <SafeAreaView style={styles.container}>
       <ContentCell
+        defaultToFullView
         key={id}
         title={title}
         organization={organization}
@@ -46,28 +48,42 @@ export const ExperienceDetailScreen: NavigationFunctionComponent<Props> = (props
         location={location}
         descriptions={descriptions}
       />
-    </ScrollView>
+
+      <CircleButton
+        backgroundColor={colors.primary}
+        buttonSize={64}
+        iconColor={colors.white}
+        iconSize={36}
+        name="close"
+        onPress={() => goBack()}
+        style={styles.circleButton}
+      />
+    </SafeAreaView>
   );
 };
-ExperienceDetailScreen.navigationOptions = ({ navigation }) => ({
-  headerLeft: (
-    <MaterialIcons
-      name="close"
-      size={24}
-      style={styles.headerButton}
-      onPress={() => navigation.goBack()}
-    />
-  ),
-});
+ExperienceDetailScreen.navigationOptions = {
+  header: null,
+};
+
+const statusBarHeight = (Platform.OS === 'ios' && Number(Platform.Version) >= 11
+  ? 0
+  : Constants.statusBarHeight
+);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: statusBarHeight + VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
-    paddingTop: VERTICAL_SPACE,
   },
   headerButton: {
     color: `${colors.primary}`,
     paddingHorizontal: 16,
+  },
+  circleButton: {
+    position: 'absolute',
+    bottom: 24,
+    left: 24,
+    zIndex: 1,
   },
 });

@@ -183,11 +183,11 @@ const styles = StyleSheet.create({
   submitButton: {
     alignItems: 'center',
     borderRadius: 24,
-    height: 40,
+    height: 46,
     justifyContent: 'center',
   },
   submitButtonText: {
-    color: '#FFF',
+    color: `${colors.white}`,
     fontSize: 24,
     fontWeight: '200',
     letterSpacing: 1.2,

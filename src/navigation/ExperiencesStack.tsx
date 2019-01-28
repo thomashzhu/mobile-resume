@@ -16,7 +16,7 @@ export const ExperiencesStack = createStackNavigator({
   initialRouteName: 'Experiences',
   navigationOptions: {
     headerStyle: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: `${colors.white}`,
       borderBottomWidth: StyleSheet.hairlineWidth,
     },
     headerTintColor: `${colors.primary}`,

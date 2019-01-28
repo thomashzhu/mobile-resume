@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -8,10 +9,12 @@ import {
 import { Entypo } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
+import { Divider } from './Divider';
 
 const VERTICAL_SPACE = 16;
 
 type Props = {
+  defaultToFullView: boolean;
   title: string;
   organization: string;
   fromDate: string;
@@ -24,7 +27,7 @@ type Props = {
 
 export const ContentCell: React.FunctionComponent<Props> = (props) => {
   const {
-    title, organization, fromDate, toDate, location, summary, descriptions, onShowDetailLinkPress,
+    defaultToFullView, title, organization, fromDate, toDate, location, summary, descriptions, onShowDetailLinkPress,
   } = props;
 
   const getDescription = (description: string, index: number) => (
@@ -60,10 +63,17 @@ export const ContentCell: React.FunctionComponent<Props> = (props) => {
         </Text>
       </View>
 
-      <View>
+      <View style={styles.descriptionGroup}>
+        {defaultToFullView && (
+          <Divider
+            horizontal
+            spacing={VERTICAL_SPACE}
+          />
+        )}
+
         {summary && <Text style={styles.description}>{summary}</Text>}
 
-        {onShowDetailLinkPress && descriptions.length >= 3 ? (
+        {!defaultToFullView && descriptions.length >= 3 ? (
           <View>
             { descriptions.slice(0, 2).map(getDescription) }
 
@@ -75,7 +85,9 @@ export const ContentCell: React.FunctionComponent<Props> = (props) => {
             </TouchableOpacity>
           </View>
         ) : (
-          descriptions.map(getDescription)
+          <ScrollView contentContainerStyle={styles.descriptionGroup}>
+            {descriptions.map(getDescription)}
+          </ScrollView>
         )}
       </View>
     </View>
@@ -84,6 +96,7 @@ export const ContentCell: React.FunctionComponent<Props> = (props) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'column',
   },
   title: {
@@ -118,6 +131,9 @@ const styles = StyleSheet.create({
   },
   showDetail: {
     color: `${colors.secondary}`,
+  },
+  descriptionGroup: {
+    flex: 1,
   },
   description: {
     color: `${colors.secondary}`,

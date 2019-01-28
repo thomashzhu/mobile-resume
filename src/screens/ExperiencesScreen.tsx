@@ -49,6 +49,7 @@ export class ExperiencesScreen extends React.Component<Props, State> {
     return (
       <View>
         <ContentCell
+          defaultToFullView={false}
           key={id}
           title={title}
           organization={organization}

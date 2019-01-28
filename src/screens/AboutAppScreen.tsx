@@ -1,15 +1,19 @@
 import React from 'react';
 import {
+  ScrollView,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import {
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 
 import { colors } from '../values/colors';
+import { CircleButton } from '../components/CircleButton';
 
 type Props = {
-  
+  navigation: NavigationScreenProp<NavigationState>
 };
 
 type State = {
@@ -17,22 +21,28 @@ type State = {
 };
 
 export class AboutAppScreen extends React.Component<Props, State> {
-  static navigationOptions = ({ navigation: { goBack } }) => ({
-    title: 'About this app',
-    headerLeft: (
-      <MaterialIcons
-        name="close"
-        size={24}
-        style={styles.headerButton}
-        onPress={() => goBack()}
-      />
-    ),
-  });
+  static navigationOptions = {
+    header: null,
+  };
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={styles.container}>
-        <Text>About this app</Text>
+        <ScrollView>
+
+        </ScrollView>
+
+        <CircleButton
+          backgroundColor={colors.primary}
+          buttonSize={64}
+          iconColor={colors.white}
+          iconSize={36}
+          name="close"
+          onPress={() => navigation.goBack()}
+          style={styles.circleButton}
+        />
       </View>
     );
   }
@@ -45,5 +55,11 @@ const styles = StyleSheet.create({
   headerButton: {
     color: `${colors.primary}`,
     paddingHorizontal: 16,
+  },
+  circleButton: {
+    position: 'absolute',
+    bottom: 24,
+    left: 24,
+    zIndex: 1,
   },
 });

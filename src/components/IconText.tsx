@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     width: 24,
   },
   icon: {
-    color: `${colors.primary}`,
+    color: `${colors.secondary}`,
     marginHorizontal: 4,
   },
   text: {

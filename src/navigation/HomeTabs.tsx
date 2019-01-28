@@ -61,7 +61,7 @@ export const HomeTabs = createBottomTabNavigator({
     showIcon: true,
     showLabel: true,
     style: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: `${colors.white}`,
     },
     indicatorStyle: null,
   },

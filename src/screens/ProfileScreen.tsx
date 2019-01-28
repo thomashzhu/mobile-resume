@@ -1,14 +1,13 @@
 import React from 'react';
 import {
   Dimensions,
-  Linking,
   Image,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 import { MapView, WebBrowser } from 'expo';
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
 import { IconText } from '../components/IconText';
@@ -47,14 +46,6 @@ export class ProfileScreen extends React.Component<Props, State> {
     ),
   });
 
-  handleEmailLinkPress = () => {
-    try {
-      Linking.openURL('mailto:dev@thomaszhu.com');
-    } catch(e) {
-      console.log(e);
-    }
-  };
-
   handleGitHubLinkPress = () => {
     WebBrowser.openBrowserAsync('https://github.com/thomashzhu');
   };
@@ -72,7 +63,6 @@ export class ProfileScreen extends React.Component<Props, State> {
             <Text style={styles.name}>Thomas Zhu</Text>
             <IconText
               icon="ios-mail"
-              onPress={this.handleEmailLinkPress}
               text="dev@thomaszhu.com"
             />
             <IconText icon="ios-phone-portrait" text="510-908-0318" />
@@ -93,7 +83,17 @@ export class ProfileScreen extends React.Component<Props, State> {
         </View>
 
         <View style={styles.quoteBlock}>
+          <FontAwesome
+            name="quote-left"
+            size={18}
+            style={styles.leftQuotation}
+          />
           <Text style={styles.quote}>I’m a self-motivated mobile developer who always seeks to learn new things. Formerly a financial analyst.</Text>
+          <FontAwesome
+            name="quote-right"
+            size={18}
+            style={styles.rightQuotation}
+          />
         </View>
 
         <View style={styles.languageBlock}>
@@ -165,13 +165,26 @@ const styles = StyleSheet.create({
   },
   quoteBlock: {
     backgroundColor: `${colors.quoteBackground}`,
-    paddingHorizontal: HORIZONTAL_SPACE,
+    paddingHorizontal: HORIZONTAL_SPACE * 2.25,
     paddingVertical: HORIZONTAL_SPACE,
     marginBottom: VERTICAL_SPACE,
+  },
+  leftQuotation: {
+    color: `${colors.secondary}`,
+    position: 'absolute',
+    top: 8,
+    left: 12,
   },
   quote: {
     color: `${colors.secondary}`,
     fontStyle: 'italic',
+    lineHeight: 18,
+  },
+  rightQuotation: {
+    color: `${colors.secondary}`,
+    position: 'absolute',
+    bottom: 8,
+    right: 12,
   },
   languageBlock: {
     flexDirection: 'row',

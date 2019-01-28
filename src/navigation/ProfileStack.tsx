@@ -20,7 +20,7 @@ export const ProfileStack = createStackNavigator({
   initialRouteName: 'Profile',
   navigationOptions: {
     headerStyle: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: `${colors.white}`,
       borderBottomWidth: StyleSheet.hairlineWidth,
     },
     headerTintColor: `${colors.primary}`,
