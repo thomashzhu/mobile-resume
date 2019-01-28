@@ -2,7 +2,6 @@ import React from 'react';
 import {
   KeyboardAvoidingView,
   StyleSheet,
-  Alert,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import {

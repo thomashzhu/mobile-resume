@@ -2,11 +2,10 @@ import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
 import { FontAwesome } from '@expo/vector-icons';
 
-import { HighlightsScreen } from '../screens/HighlightsScreen';
-import { ExperiencesScreen } from '../screens/ExperiencesScreen';
+import { ProfileStack } from './ProfileStack';
+import { ExperiencesStack } from './ExperiencesStack';
 import { SkillsScreen } from '../screens/SkillsScreen';
 import { RecognitionsScreen } from '../screens/RecognitionsScreen';
-import { ProfileStack } from './ProfileStack';
 import { colors } from '../values/colors';
 
 const getTabBarIcon = (icon: string) => ({ tintColor }: { tintColor: string }) => (
@@ -18,15 +17,15 @@ const getTabBarIcon = (icon: string) => ({ tintColor }: { tintColor: string }) =
 );
 
 export const HomeTabs = createBottomTabNavigator({
-  Highlights: {
-    screen: HighlightsScreen,
+  Profile: {
+    screen: ProfileStack,
     navigationOptions: {
-      tabBarIcon: getTabBarIcon('star'),
-      tabBarLabel: 'Highlights',
+      tabBarIcon: getTabBarIcon('user'),
+      tabBarLabel: 'Profile',
     },
   },
   Experiences: {
-    screen: ExperiencesScreen,
+    screen: ExperiencesStack,
     navigationOptions: {
       tabBarIcon: getTabBarIcon('briefcase'),
       tabBarLabel: 'Experiences',
@@ -46,15 +45,8 @@ export const HomeTabs = createBottomTabNavigator({
       tabBarLabel: 'Recognitions',
     },
   },
-  Profile: {
-    screen: ProfileStack,
-    navigationOptions: {
-      tabBarIcon: getTabBarIcon('envelope'),
-      tabBarLabel: 'Profile',
-    },
-  },
 }, {
-  initialRouteName: 'Highlights',
+  initialRouteName: 'Profile',
   tabBarOptions: {
     activeTintColor: `${colors.primary}`,
     inactiveTintColor: `${colors.secondary}`,

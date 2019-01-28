@@ -3,10 +3,13 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
+
+const VERTICAL_SPACE = 16;
 
 type Props = {
   position: string;
@@ -15,46 +18,66 @@ type Props = {
   toDate?: string;
   location: string;
   descriptions: string[];
+  onShowDetailLinkPress?: () => void;
 };
 
-export const ExperienceCell: React.FunctionComponent<Props> = ({
-  position, company, fromDate, toDate, location, descriptions,
-}) => (
-  <View style={styles.container}>
-    <Text style={styles.position}>{position}</Text>
-    
-    <Text style={styles.company}>{company}</Text>
+export const ExperienceCell: React.FunctionComponent<Props> = (props) => {
+  const {
+    position, company, fromDate, toDate, location, descriptions, onShowDetailLinkPress,
+  } = props;
 
-    <View style={styles.infoRow}>
-      <Entypo
-        name="calendar"
-        size={16}
-      />
-      <Text style={styles.interval}>
-        {`${fromDate} - ${toDate}`}
-      </Text>
+  const getDescription = (description: string, index: number) => (
+    <Text
+      key={index}
+      style={styles.description}
+    >
+      {`\u2022  ${description}`}
+    </Text>
+  );
 
-      <Entypo
-        name="location-pin"
-        size={16}
-      />
-      <Text style={styles.location}>
-        {location}
-      </Text>
-    </View>
+  return (
+    <View style={styles.container}>
+      <Text style={styles.position}>{position}</Text>
+      
+      <Text style={styles.company}>{company}</Text>
 
-    <View style={styles.descriptions}>
-      {descriptions.map((description, index) => (
-        <Text
-          key={index}
-          style={styles.description}
-        >
-          {`\u2022  ${description}`}
+      <View style={styles.infoRow}>
+        <Entypo
+          name="calendar"
+          size={16}
+        />
+        <Text style={styles.interval}>
+          {`${fromDate} - ${toDate}`}
         </Text>
-      ))}
+
+        <Entypo
+          name="location-pin"
+          size={16}
+        />
+        <Text style={styles.location}>
+          {location}
+        </Text>
+      </View>
+
+      <View>
+        {onShowDetailLinkPress && descriptions.length >= 3 ? (
+          <View>
+            { descriptions.slice(0, 2).map(getDescription) }
+
+            <TouchableOpacity
+              onPress={onShowDetailLinkPress}
+              style={styles.showDetailLink}
+            >
+              <Text style={styles.showDetail}>Show more...</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          descriptions.map(getDescription)
+        )}
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -86,7 +109,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: 2,
   },
-  descriptions: {
+  showDetailLink: {
+    alignItems: 'center',
+    marginTop: VERTICAL_SPACE / 2,
+  },
+  showDetail: {
+    color: `${colors.secondary}`,
   },
   description: {
     color: `${colors.secondary}`,

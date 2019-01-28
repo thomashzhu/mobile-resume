@@ -7,6 +7,10 @@ import {
   ListRenderItemInfo,
 } from 'react-native';
 import { Constants } from 'expo';
+import {
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 
 import { ExperienceCell } from '../components/ExperienceCell';
 import { Divider } from '../components/Divider';
@@ -17,7 +21,7 @@ const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
 
 type Props = {
-  
+  navigation: NavigationScreenProp<NavigationState>
 };
 
 type State = {
@@ -25,6 +29,17 @@ type State = {
 };
 
 export class ExperiencesScreen extends React.Component<Props, State> {
+  static navigationOptions = {
+    header: null,
+  };
+
+  handleShowDetailPress = (item: Experience) => (
+    () => {
+      const { navigation: { navigate }} = this.props;
+      navigate('ExperienceDetail', { experience: item });
+    }
+  );
+
   renderExperienceItem = (info: ListRenderItemInfo<Experience>) => {
     const { item, index } = info;
     const {
@@ -41,6 +56,7 @@ export class ExperiencesScreen extends React.Component<Props, State> {
           toDate={toDate}
           location={location}
           descriptions={descriptions}
+          onShowDetailLinkPress={this.handleShowDetailPress(item)}
         />
 
         {this.renderSeparator(index)}
