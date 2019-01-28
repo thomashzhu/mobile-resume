@@ -14,7 +14,7 @@ import { Divider } from './Divider';
 const VERTICAL_SPACE = 16;
 
 type Props = {
-  defaultToFullView: boolean;
+  isSingleView: boolean;
   title: string;
   organization: string;
   fromDate: string;
@@ -27,7 +27,7 @@ type Props = {
 
 export const ContentCell: React.FunctionComponent<Props> = (props) => {
   const {
-    defaultToFullView, title, organization, fromDate, toDate, location, summary, descriptions, onShowDetailLinkPress,
+    isSingleView, title, organization, fromDate, toDate, location, summary, descriptions, onShowDetailLinkPress,
   } = props;
 
   const getDescription = (description: string, index: number) => (
@@ -64,7 +64,7 @@ export const ContentCell: React.FunctionComponent<Props> = (props) => {
       </View>
 
       <View style={styles.descriptionGroup}>
-        {defaultToFullView && (
+        {isSingleView && (
           <Divider
             horizontal
             spacing={VERTICAL_SPACE}
@@ -73,7 +73,7 @@ export const ContentCell: React.FunctionComponent<Props> = (props) => {
 
         {summary && <Text style={styles.description}>{summary}</Text>}
 
-        {!defaultToFullView && descriptions.length >= 3 ? (
+        {onShowDetailLinkPress && descriptions.length >= 3 ? (
           <View>
             { descriptions.slice(0, 2).map(getDescription) }
 

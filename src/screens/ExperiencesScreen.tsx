@@ -49,7 +49,7 @@ export class ExperiencesScreen extends React.Component<Props, State> {
     return (
       <View>
         <ContentCell
-          defaultToFullView={false}
+          isSingleView={false}
           key={id}
           title={title}
           organization={organization}
@@ -89,6 +89,7 @@ export class ExperiencesScreen extends React.Component<Props, State> {
           keyExtractor={({ id }) => id.toString()}
           renderItem={this.renderExperienceItem}
           showsVerticalScrollIndicator={false}
+          style={styles.list}
         />
       </View>
     );
@@ -105,6 +106,8 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: statusBarHeight,
     paddingHorizontal: HORIZONTAL_SPACE,
+  },
+  list: {
     paddingTop: VERTICAL_SPACE,
   },
   lastItem: {

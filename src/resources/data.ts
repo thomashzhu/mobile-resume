@@ -158,3 +158,9 @@ export const SKILLS_DATA = [
   { title: 'React Native', data: ['Core API', 'Navigation', 'Redux', 'Animation', 'Gestures', 'Expo', 'Jest & Enzyme', 'ESLint / TSLint'] },
   { title: 'AWS', data: ['IAM', 'API Gateway', 'CloudWatch', 'Cognito', 'AppSync (learning)'] },
 ];
+
+export const RECOGNITION_DATA = [
+  { title: 'SF Hacks 2018', data: ['Best Mobile App', 'Best Beginner Hack', 'Best use of Dash API'] },
+  { title: 'From Google', data: ['Associate Android Developer Certificate', 'Grow with Google Scholarship (twice)'] },
+  { title: 'CodePath', data: ['Best Design (2nd place)'] },
+];

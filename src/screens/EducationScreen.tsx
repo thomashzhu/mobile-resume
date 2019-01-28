@@ -34,6 +34,7 @@ export class EducationScreen extends React.Component<Props, State> {
     return (
       <View>
         <ContentCell
+          isSingleView={false}
           key={id}
           title={title}
           organization={organization}
@@ -72,6 +73,7 @@ export class EducationScreen extends React.Component<Props, State> {
           data={EDUCATION_DATA}
           keyExtractor={({ id }) => id.toString()}
           renderItem={this.renderEducationItem}
+          style={styles.list}
         />
       </View>
     );
@@ -88,6 +90,8 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: statusBarHeight,
     paddingHorizontal: HORIZONTAL_SPACE,
+  },
+  list: {
     paddingTop: VERTICAL_SPACE,
   },
   lastItem: {

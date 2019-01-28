@@ -6,5 +6,6 @@ export const colors = {
   alert: Color('#FF5050'),
   quoteBackground: Color('#F2F2F2'),
   disabled: Color('#BDBDBD'),
+  black: Color('#000000'),
   white: Color('#FFFFFF'),
 };

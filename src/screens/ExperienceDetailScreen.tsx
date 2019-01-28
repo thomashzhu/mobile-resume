@@ -39,7 +39,7 @@ export const ExperienceDetailScreen: NavigationFunctionComponent<Props> = (props
   return (
     <SafeAreaView style={styles.container}>
       <ContentCell
-        defaultToFullView
+        isSingleView
         key={id}
         title={title}
         organization={organization}
