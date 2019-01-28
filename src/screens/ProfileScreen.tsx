@@ -1,13 +1,13 @@
 import React from 'react';
 import {
   Dimensions,
+  Linking,
   Image,
   StyleSheet,
-  ScrollView,
   Text,
   View,
 } from 'react-native';
-import { MapView } from 'expo';
+import { MapView, WebBrowser } from 'expo';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
@@ -45,6 +45,18 @@ export class ProfileScreen extends React.Component<Props, State> {
     ),
   });
 
+  handleEmailLinkPress = () => {
+    try {
+      Linking.openURL('mailto:dev@thomaszhu.com');
+    } catch(e) {
+      console.log(e);
+    }
+  };
+
+  handleGitHubLinkPress = () => {
+    WebBrowser.openBrowserAsync('https://github.com/thomashzhu');
+  };
+
   render() {
     const { width } = Dimensions.get('window');
     const borderRadiusStyle = {
@@ -56,9 +68,18 @@ export class ProfileScreen extends React.Component<Props, State> {
         <View style={styles.columns}>
           <View style={styles.leftColumn}>
             <Text style={styles.name}>Thomas Zhu</Text>
-            <IconText icon="email" text="dev@thomaszhu.com" />
-            <IconText icon="phone" text="510-908-0318" />
-            <IconText icon="location-on" text="San Francisco Bay Area" />
+            <IconText
+              icon="ios-mail"
+              onPress={this.handleEmailLinkPress}
+              text="dev@thomaszhu.com"
+            />
+            <IconText icon="ios-phone-portrait" text="510-908-0318" />
+            <IconText
+              icon="logo-github"
+              onPress={this.handleGitHubLinkPress}
+              text="github.com/thomashzhu"
+              textStyle={{ fontStyle: 'italic' }}
+            />
           </View>
 
           <View style={styles.rightColumn}>

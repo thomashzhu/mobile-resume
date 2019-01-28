@@ -1,29 +1,41 @@
 import React from 'react';
 import {
+  StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   View,
+  TouchableWithoutFeedback,
 } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
 
 type Props = {
   icon: string;
+  onPress?: () => void;
   text: string;
+  textStyle?: StyleProp<TextStyle>,
 };
 
-export const IconText: React.FunctionComponent<Props> = ({ icon, text }) => (
-  <View style={styles.container}>
-    <MaterialIcons
-      name={icon}
-      size={18}
-      style={styles.icon}
-    />
-    <Text style={styles.text}>
-      {text}
-    </Text>
-  </View>
+export const IconText: React.FunctionComponent<Props> = ({
+  icon, onPress, text, textStyle,
+}) => (
+  <TouchableWithoutFeedback onPress={onPress}>
+    <View style={styles.container}>
+      <View style={styles.iconContainer}>
+        <Ionicons
+          name={icon}
+          size={18}
+          style={styles.icon}
+        />
+      </View>
+
+      <Text style={[styles.text, textStyle || {}]}>
+        {text}
+      </Text>
+    </View>
+  </TouchableWithoutFeedback>
 );
 
 const styles = StyleSheet.create({
@@ -32,11 +44,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 6,
   },
-  text: {
-    color: `${colors.secondary}`,
+  iconContainer: {
+    alignItems: 'center',
+    marginHorizontal: 4,
+    width: 24,
   },
   icon: {
     color: `${colors.primary}`,
     marginHorizontal: 4,
+  },
+  text: {
+    color: `${colors.secondary}`,
   },
 });

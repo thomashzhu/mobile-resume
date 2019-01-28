@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Alert,
   Animated,
   StyleProp,
   StyleSheet,
@@ -11,6 +12,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
+import validator from 'validator';
 
 import { ReduxState } from '../reducers/index';
 import { ContactFormReduxState } from '../reducers/contact_form';
@@ -47,8 +49,14 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
     const { contactForm } = this.props;
     const { name, email, phone, message } = contactForm;
 
-    if (!name || !email || !message) return;
-    if (!validateEmail(email)) return;
+    if (!validator.isEmail(email)) {
+      Alert.alert('Error', 'Unrecognized email format');
+      return;
+    }
+    if (phone && !validator.isMobilePhone(phone, 'en-US')) {
+      Alert.alert('Error', 'Unrecognized phone number format');
+      return;
+    }
 
     try {
       await sendEmail({
@@ -81,6 +89,11 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
 
     const animatedStyle = {
       transform: [{ scale: this.scale }],
+    };
+
+    const disabled = !name || !email || !message;
+    const submitButtonStyle = {
+      backgroundColor: disabled ? `${colors.disabled}` : `${colors.primary}`,
     };
 
     return (
@@ -124,17 +137,19 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
             multiline
             onChangeText={this.handleChangeText('message')}
             placeholder="Message"
+            style={styles.messageField}
             underlineColorAndroid="transparent"
             value={message}
           />
         </ScrollView>
 
         <TouchableWithoutFeedback
+          disabled={disabled}
           onPress={this.handleSubmitPress}
           onPressIn={this.handleSubmitPressIn}
           onPressOut={this.handleSubmitPressOut}
         >
-          <Animated.View style={[styles.submitButton, animatedStyle]}>
+          <Animated.View style={[styles.submitButton, animatedStyle, submitButtonStyle]}>
             <Text style={styles.submitButtonText}>Send</Text>
           </Animated.View>
         </TouchableWithoutFeedback>
@@ -160,12 +175,14 @@ const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 6,
   },
+  messageField: {
+    height: 96,
+  },
   submitButton: {
     alignItems: 'center',
     borderRadius: 24,
-    justifyContent: 'center',
-    backgroundColor: `${colors.primary}`,
     height: 40,
+    justifyContent: 'center',
   },
   submitButtonText: {
     color: '#FFF',

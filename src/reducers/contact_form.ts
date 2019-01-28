@@ -1,4 +1,5 @@
 import {
+  CLEAR_CONTACT_FORM_FIELDS,
   UPDATE_CONTACT_FORM_FIELD,
 } from '../actions/types';
 import { ContactFormAction } from '../actions/contact_form_actions';
@@ -21,6 +22,8 @@ export const contactFormReducer = (state = INITIAL_STATE, action: ContactFormAct
   switch (action.type) {
     case UPDATE_CONTACT_FORM_FIELD:
       return { ...state, [action.name]: action.value };
+    case CLEAR_CONTACT_FORM_FIELDS:
+      return INITIAL_STATE;
     default:
       return state;
   }

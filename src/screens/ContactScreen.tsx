@@ -1,11 +1,9 @@
 import React from 'react';
 import {
   KeyboardAvoidingView,
-  Platform,
   StyleSheet,
-  View,
+  Alert,
 } from 'react-native';
-import { Constants } from 'expo';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
   Header,
@@ -15,13 +13,12 @@ import {
   NavigationState,
 } from 'react-navigation';
 import { connect } from 'react-redux';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { ContactForm } from '../components/ContactForm';
 import { colors } from '../values/colors';
 import { ReduxState } from '../reducers';
 import { ContactFormReduxState } from '../reducers/contact_form';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Result } from 'expo-background-fetch';
 
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
@@ -29,6 +26,7 @@ const VERTICAL_SPACE = 16;
 type Props = {
   contactForm: ContactFormReduxState,
   navigation: NavigationScreenProp<NavigationState>,
+  clearContactForm: () => void;
 };
 
 type State = {};
@@ -46,8 +44,9 @@ export class _ContactScreen extends React.Component<Props, State> {
     ),
   });
 
-  handleLayout = (e) => {
-
+  componentWillUnmount() {
+    const { clearContactForm } = this.props;
+    clearContactForm();
   }
 
   render() {
@@ -83,7 +82,11 @@ export const ContactScreen = (() => {
     contactForm: state.contactForm,
   });
 
-  const mapDispatchToProps = {};
+  const { clearContactForm } = require('../actions/contact_form_actions');
+
+  const mapDispatchToProps = {
+    clearContactForm,
+  };
 
   return connect(mapStateToProps, mapDispatchToProps)(_ContactScreen);
 })();

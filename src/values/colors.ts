@@ -5,4 +5,5 @@ export const colors = {
   secondary: Color('#595959'),
   alert: Color('#FF5050'),
   quoteBackground: Color('#F2F2F2'),
+  disabled: Color('#BDBDBD'),
 };
