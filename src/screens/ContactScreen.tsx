@@ -18,7 +18,6 @@ import { ContactForm } from '../components/ContactForm';
 import { colors } from '../values/colors';
 import { ReduxState } from '../reducers';
 import { ContactFormReduxState } from '../reducers/contact_form';
-import { Result } from 'expo-background-fetch';
 
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;

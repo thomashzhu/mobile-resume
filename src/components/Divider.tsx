@@ -28,14 +28,14 @@ export const Divider: React.FunctionComponent<Props> = ({
   if (horizontal) {
     const horizontalStyle = {
       height: size,
-      paddingHorizontal: padding,
+      marginHorizontal: padding,
       marginVertical: spacing,
     };
     return <View style={[sharedStyle, horizontalStyle]} />;
   } else {
     const verticalStyle = {
       width: size,
-      paddingVertical: padding,
+      marginVertical: padding,
       marginHorizontal: spacing,
     };
     return <View style={[sharedStyle, verticalStyle]} />;
