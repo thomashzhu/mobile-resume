@@ -22,6 +22,7 @@ import { sendEmail } from '../utils/send_email';
 
 type Props = {
   contactForm: ContactFormReduxState,
+  clearContactForm: () => void;
   updateContactFormField: (name: string, value: string) => void;
   style?: StyleProp<ViewStyle>,
 };
@@ -46,7 +47,7 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
   );
 
   handleSubmitPress = async () => {
-    const { contactForm } = this.props;
+    const { contactForm, clearContactForm } = this.props;
     const { name, email, phone, message } = contactForm;
 
     if (!validator.isEmail(email)) {
@@ -64,6 +65,7 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
         subject: `Message from ${name} (${email})`,
         body: `${message}\n\nPhone: ${phone}`,
       });
+      clearContactForm();
     } catch(e) {
       console.log(e);
     }
@@ -197,9 +199,12 @@ export const ContactForm = (() => {
     contactForm: state.contactForm,
   });
 
-  const { updateContactFormField } = require('../actions/contact_form_actions');
+  const {
+    clearContactForm, updateContactFormField,
+  } = require('../actions/contact_form_actions');
 
   const mapDispatchToProps = {
+    clearContactForm,
     updateContactFormField,
   };
 

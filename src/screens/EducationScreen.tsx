@@ -1,49 +1,34 @@
 import React from 'react';
 import {
   FlatList,
+  ListRenderItemInfo,
   Platform,
   StyleSheet,
   View,
-  ListRenderItemInfo,
 } from 'react-native';
 import { Constants } from 'expo';
-import {
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
 
+import { EDUCATION_DATA } from '../resources/data';
+import { Content } from '../values/types';
 import { ContentCell } from '../components/ContentCell';
 import { Divider } from '../components/Divider';
-import { EXPERIENCES_DATA } from '../resources/data';
-import { Content } from '../values/types';
 
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
 
 type Props = {
-  navigation: NavigationScreenProp<NavigationState>
+  
 };
 
 type State = {
   
 };
 
-export class ExperiencesScreen extends React.Component<Props, State> {
-  static navigationOptions = {
-    header: null,
-  };
-
-  handleShowDetailPress = (item: Content) => (
-    () => {
-      const { navigation: { navigate }} = this.props;
-      navigate('ExperienceDetail', { experience: item });
-    }
-  );
-
-  renderExperienceItem = (info: ListRenderItemInfo<Content>) => {
+export class EducationScreen extends React.Component<Props, State> {
+  renderEducationItem = (info: ListRenderItemInfo<Content>) => {
     const { item, index } = info;
     const {
-      id, title, organization, fromDate, toDate, location, descriptions,
+      id, title, organization, fromDate, toDate, location, summary, descriptions,
     } = item;
 
     return (
@@ -55,8 +40,8 @@ export class ExperiencesScreen extends React.Component<Props, State> {
           fromDate={fromDate}
           toDate={toDate}
           location={location}
+          summary={summary}
           descriptions={descriptions}
-          onShowDetailLinkPress={this.handleShowDetailPress(item)}
         />
 
         {this.renderSeparator(index)}
@@ -65,7 +50,7 @@ export class ExperiencesScreen extends React.Component<Props, State> {
   }
 
   renderSeparator = (index: number) => {
-    if (index !== EXPERIENCES_DATA.length - 1) {
+    if (index !== EDUCATION_DATA.length - 1) {
       return (
         <Divider
           horizontal
@@ -84,10 +69,9 @@ export class ExperiencesScreen extends React.Component<Props, State> {
     return (
       <View style={styles.safeAreaView}>
         <FlatList
-          data={EXPERIENCES_DATA}
+          data={EDUCATION_DATA}
           keyExtractor={({ id }) => id.toString()}
-          renderItem={this.renderExperienceItem}
-          showsVerticalScrollIndicator={false}
+          renderItem={this.renderEducationItem}
         />
       </View>
     );

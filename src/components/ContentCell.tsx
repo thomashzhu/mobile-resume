@@ -12,18 +12,19 @@ import { colors } from '../values/colors';
 const VERTICAL_SPACE = 16;
 
 type Props = {
-  position: string;
-  company: string;
+  title: string;
+  organization: string;
   fromDate: string;
   toDate?: string;
   location: string;
+  summary?: string;
   descriptions: string[];
   onShowDetailLinkPress?: () => void;
 };
 
-export const ExperienceCell: React.FunctionComponent<Props> = (props) => {
+export const ContentCell: React.FunctionComponent<Props> = (props) => {
   const {
-    position, company, fromDate, toDate, location, descriptions, onShowDetailLinkPress,
+    title, organization, fromDate, toDate, location, summary, descriptions, onShowDetailLinkPress,
   } = props;
 
   const getDescription = (description: string, index: number) => (
@@ -37,9 +38,9 @@ export const ExperienceCell: React.FunctionComponent<Props> = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.position}>{position}</Text>
+      <Text style={styles.title}>{title}</Text>
       
-      <Text style={styles.company}>{company}</Text>
+      <Text style={styles.organization}>{organization}</Text>
 
       <View style={styles.infoRow}>
         <Entypo
@@ -60,6 +61,8 @@ export const ExperienceCell: React.FunctionComponent<Props> = (props) => {
       </View>
 
       <View>
+        {summary && <Text style={styles.description}>{summary}</Text>}
+
         {onShowDetailLinkPress && descriptions.length >= 3 ? (
           <View>
             { descriptions.slice(0, 2).map(getDescription) }
@@ -83,13 +86,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
   },
-  position: {
+  title: {
     color: `${colors.secondary}`,
     fontSize: 22,
     fontWeight: '600',
     marginBottom: 4,
   },
-  company: {
+  organization: {
     color: `${colors.primary}`,
     marginBottom: 5,
   },

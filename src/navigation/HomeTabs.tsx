@@ -1,15 +1,16 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
-import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import { ProfileStack } from './ProfileStack';
+import { EducationScreen } from '../screens/EducationScreen';
 import { ExperiencesStack } from './ExperiencesStack';
 import { SkillsScreen } from '../screens/SkillsScreen';
-import { RecognitionsScreen } from '../screens/RecognitionsScreen';
+import { RecognitionScreen } from '../screens/RecognitionScreen';
 import { colors } from '../values/colors';
 
 const getTabBarIcon = (icon: string) => ({ tintColor }: { tintColor: string }) => (
-  <FontAwesome
+  <Ionicons
     name={icon}
     size={24}
     style={{ color: tintColor }}
@@ -20,29 +21,36 @@ export const HomeTabs = createBottomTabNavigator({
   Profile: {
     screen: ProfileStack,
     navigationOptions: {
-      tabBarIcon: getTabBarIcon('user'),
+      tabBarIcon: getTabBarIcon('md-person'),
       tabBarLabel: 'Profile',
+    },
+  },
+  Education: {
+    screen: EducationScreen,
+    navigationOptions: {
+      tabBarIcon: getTabBarIcon('md-school'),
+      tabBarLabel: 'Education',
     },
   },
   Experiences: {
     screen: ExperiencesStack,
     navigationOptions: {
-      tabBarIcon: getTabBarIcon('briefcase'),
+      tabBarIcon: getTabBarIcon('ios-briefcase'),
       tabBarLabel: 'Experiences',
     },
   },
   Skills: {
     screen: SkillsScreen,
     navigationOptions: {
-      tabBarIcon: getTabBarIcon('github'),
+      tabBarIcon: getTabBarIcon('logo-github'),
       tabBarLabel: 'Skills',
     },
   },
-  Recognitions: {
-    screen: RecognitionsScreen,
+  Recognition: {
+    screen: RecognitionScreen,
     navigationOptions: {
-      tabBarIcon: getTabBarIcon('trophy'),
-      tabBarLabel: 'Recognitions',
+      tabBarIcon: getTabBarIcon('md-trophy'),
+      tabBarLabel: 'Recognition',
     },
   },
 }, {

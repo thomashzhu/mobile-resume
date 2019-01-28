@@ -1,9 +1,10 @@
-export type Experience = {
+export type Content = {
   id: number;
-  position: string;
-  company: string;
+  title: string;
+  organization: string;
   fromDate: string;
   toDate: string;
   location: string;
+  summary?: string;
   descriptions: string[];
 };

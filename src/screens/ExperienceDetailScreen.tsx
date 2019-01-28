@@ -1,7 +1,7 @@
 import React from 'react';
 import {
+  ScrollView,
   StyleSheet,
-  View,
 } from 'react-native';
 import {
   NavigationScreenConfig,
@@ -11,7 +11,7 @@ import {
 } from 'react-navigation';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { ExperienceCell } from '../components/ExperienceCell';
+import { ContentCell } from '../components/ContentCell';
 import { colors } from '../values/colors';
 
 const HORIZONTAL_SPACE = 16;
@@ -29,21 +29,24 @@ export const ExperienceDetailScreen: NavigationFunctionComponent<Props> = (props
   const { navigation: { state: { params }}} = props;
   const { experience } = params;
   const {
-    id, position, company, fromDate, toDate, location, descriptions,
+    id, title, organization, fromDate, toDate, location, descriptions,
   } = experience;
 
   return (
-    <View style={styles.container}>
-      <ExperienceCell
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={styles.container}
+    >
+      <ContentCell
         key={id}
-        position={position}
-        company={company}
+        title={title}
+        organization={organization}
         fromDate={fromDate}
         toDate={toDate}
         location={location}
         descriptions={descriptions}
       />
-    </View>
+    </ScrollView>
   );
 };
 ExperienceDetailScreen.navigationOptions = ({ navigation }) => ({

@@ -15,7 +15,7 @@ type State = {
   
 };
 
-export class RecognitionsScreen extends React.Component<Props, State> {
+export class RecognitionScreen extends React.Component<Props, State> {
   
 
   render() {
