@@ -19,7 +19,5 @@ export const ExperiencesStack = createStackNavigator({
       backgroundColor: `${colors.white}`,
       borderBottomWidth: StyleSheet.hairlineWidth,
     },
-    headerTintColor: `${colors.primary}`,
   },
-  mode: 'modal',
 });

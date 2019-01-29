@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   circleButton: {
     position: 'absolute',
     bottom: 24,
-    left: 24,
+    right: 24,
     zIndex: 1,
   },
 });

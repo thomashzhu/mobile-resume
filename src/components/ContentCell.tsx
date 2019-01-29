@@ -22,7 +22,7 @@ type Props = {
   summary?: string;
   descriptions: string[];
   onShowDetailLinkPress?: () => void;
-  maxBulletsVisible: number;
+  maxBulletsVisible?: number;
   isSingleView: boolean;
 };
 

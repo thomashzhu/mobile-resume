@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Platform,
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
@@ -10,11 +9,9 @@ import {
   NavigationScreenProp,
   NavigationState,
 } from 'react-navigation';
-import { Constants } from 'expo';
 
 import { ContentCell } from '../components/ContentCell';
 import { colors } from '../values/colors';
-import { CircleButton } from '../components/CircleButton';
 
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
@@ -28,7 +25,7 @@ interface NavigationFunctionComponent<T> extends React.FunctionComponent<T> {
 }
 
 export const ExperienceDetailScreen: NavigationFunctionComponent<Props> = (props) => {
-  const { navigation: { goBack, state: { params }}} = props;
+  const { navigation: { state: { params }}} = props;
   const { experience } = params;
   const {
     id, title, organization, fromDate, toDate, location, descriptions,
@@ -46,32 +43,19 @@ export const ExperienceDetailScreen: NavigationFunctionComponent<Props> = (props
         location={location}
         descriptions={descriptions}
       />
-
-      <CircleButton
-        backgroundColor={colors.primary}
-        buttonSize={64}
-        iconColor={colors.white}
-        iconSize={36}
-        name="close"
-        onPress={() => goBack()}
-        style={styles.circleButton}
-      />
     </SafeAreaView>
   );
 };
-ExperienceDetailScreen.navigationOptions = {
-  header: null,
-};
 
-const statusBarHeight = (Platform.OS === 'ios' && Number(Platform.Version) >= 11
-  ? 0
-  : Constants.statusBarHeight
-);
+ExperienceDetailScreen.navigationOptions = ({ navigation: { state: { params }}}) => ({
+  headerTintColor: `${colors.primary}`,
+  title: '',
+});
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: statusBarHeight + VERTICAL_SPACE,
+    marginTop: VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
   },
   headerButton: {
@@ -81,7 +65,7 @@ const styles = StyleSheet.create({
   circleButton: {
     position: 'absolute',
     bottom: 24,
-    left: 24,
+    right: 24,
     zIndex: 1,
   },
 });
