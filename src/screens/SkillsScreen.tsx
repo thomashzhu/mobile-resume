@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { Constants } from 'expo';
 
-import { SkillCell } from '../components/SkillCell';
+import { CircledText } from '../components/CircledText';
 import { colors } from '../values/colors';
 import { SKILLS_DATA } from '../resources/data';
 
@@ -39,9 +39,9 @@ export class SkillsScreen extends React.Component {
     return (
       <View style={styles.itemGroup}>
         {this.skillMap[item].map((skill: string) => (
-          <SkillCell
+          <CircledText
             key={skill}
-            skill={skill}
+            text={skill}
           />
         ))}
       </View>

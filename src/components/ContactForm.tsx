@@ -9,7 +9,6 @@ import {
   View,
   ViewStyle,
   ScrollView,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import { connect } from 'react-redux';
 import validator from 'validator';
@@ -17,12 +16,15 @@ import validator from 'validator';
 import { ReduxState } from '../reducers/index';
 import { ContactFormReduxState } from '../reducers/contact_form';
 import { colors } from '../values/colors';
-import { validateEmail } from '../utils/validate';
 import { sendEmail } from '../utils/send_email';
+import { Slider } from './Slider';
+
+const SLIDER_SIZE = 48;
 
 type Props = {
   contactForm: ContactFormReduxState,
   clearContactForm: () => void;
+  onFormSubmitted: () => void;
   updateContactFormField: (name: string, value: string) => void;
   style?: StyleProp<ViewStyle>,
 };
@@ -31,13 +33,14 @@ const DEFAULT_PROPS = {
 };
 
 type State = {
-  
+  shouldResetSlider: boolean;
 };
 
 export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, State> {
   static defaultProps = DEFAULT_PROPS;
 
   scale = new Animated.Value(1);
+  shouldResetSlider = false;
 
   handleChangeText = (name: string) => (
     (value: string) => {
@@ -46,17 +49,17 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
     }
   );
 
-  handleSubmitPress = async () => {
-    const { contactForm, clearContactForm } = this.props;
+  handleSlideToEnd = async () => {
+    const { contactForm, clearContactForm, onFormSubmitted } = this.props;
     const { name, email, phone, message } = contactForm;
 
     if (!validator.isEmail(email)) {
       Alert.alert('Error', 'Unrecognized email format');
-      return;
+      return false;
     }
     if (phone && !validator.isMobilePhone(phone, 'en-US')) {
       Alert.alert('Error', 'Unrecognized phone number format');
-      return;
+      return false;
     }
 
     try {
@@ -65,38 +68,23 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
         subject: `Message from ${name} (${email})`,
         body: `${message}\n\nPhone: ${phone}`,
       });
+
       clearContactForm();
+      onFormSubmitted();
+
+      return true;
     } catch(e) {
       console.log(e);
+      return false;
     }
   };
 
-  handleSubmitPressIn = () => {
-    Animated.spring(this.scale, {
-      toValue: 0.85,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  handleSubmitPressOut = () => {
-    Animated.spring(this.scale, {
-      toValue: 1,
-      useNativeDriver: true,
-    }).start();
-  };
 
   render() {
     const { contactForm, style } = this.props;
     const { name, email, phone, message } = contactForm;
 
-    const animatedStyle = {
-      transform: [{ scale: this.scale }],
-    };
-
-    const disabled = !name || !email || !message;
-    const submitButtonStyle = {
-      backgroundColor: disabled ? `${colors.disabled}` : `${colors.primary}`,
-    };
+    console.log('this.shouldResetSlider', this.shouldResetSlider);
 
     return (
       <View style={[styles.container, style]}>
@@ -145,16 +133,11 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
           />
         </ScrollView>
 
-        <TouchableWithoutFeedback
-          disabled={disabled}
-          onPress={this.handleSubmitPress}
-          onPressIn={this.handleSubmitPressIn}
-          onPressOut={this.handleSubmitPressOut}
-        >
-          <Animated.View style={[styles.submitButton, animatedStyle, submitButtonStyle]}>
-            <Text style={styles.submitButtonText}>Send</Text>
-          </Animated.View>
-        </TouchableWithoutFeedback>
+        <Slider
+          onSlideToEnd={this.handleSlideToEnd}
+          reset={this.shouldResetSlider}
+          size={SLIDER_SIZE}
+        />
       </View>
     );
   }

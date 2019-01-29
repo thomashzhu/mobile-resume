@@ -48,13 +48,17 @@ export class _ContactScreen extends React.Component<Props, State> {
   }
 
   render() {
+    const { navigation } = this.props;
     return (
       <KeyboardAvoidingView
         behavior="padding"
         keyboardVerticalOffset={Header.HEIGHT + 20}
         style={styles.container}
       >
-        <ContactForm style={styles.contactForm} />
+        <ContactForm
+          onFormSubmitted={() => navigation.goBack()}
+          style={styles.contactForm}
+        />
       </KeyboardAvoidingView>
     );
   }
