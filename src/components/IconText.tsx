@@ -7,7 +7,7 @@ import {
   View,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Entypo, Ionicons } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
 
@@ -34,6 +34,14 @@ export const IconText: React.FunctionComponent<Props> = ({
       <Text style={[styles.text, textStyle || {}]}>
         {text}
       </Text>
+
+      {onPress && (
+        <Entypo
+          name="link"
+          size={14}
+          style={styles.anchorIcon}
+        />
+      )}
     </View>
   </TouchableWithoutFeedback>
 );
@@ -55,5 +63,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: `${colors.secondary}`,
+  },
+  anchorIcon: {
+    color: `${colors.secondary}`,
+    marginLeft: 3,
+    marginTop: 2, // Setting alignItem to center in parent container still shows offset
   },
 });

@@ -70,7 +70,6 @@ export class ProfileScreen extends React.Component<Props, State> {
               icon="logo-github"
               onPress={this.handleGitHubLinkPress}
               text="github.com/thomashzhu"
-              textStyle={{ fontStyle: 'italic' }}
             />
           </View>
 

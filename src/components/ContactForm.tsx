@@ -24,6 +24,7 @@ const SLIDER_SIZE = 48;
 type Props = {
   contactForm: ContactFormReduxState,
   clearContactForm: () => void;
+  onError: (error: string) => void;
   onFormSubmitted: () => void;
   updateContactFormField: (name: string, value: string) => void;
   style?: StyleProp<ViewStyle>,
@@ -50,19 +51,21 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
   );
 
   handleSlideToEnd = async () => {
-    const { contactForm, clearContactForm, onFormSubmitted } = this.props;
+    const {
+      contactForm, clearContactForm, onError, onFormSubmitted,
+    } = this.props;
     const { name, email, phone, message } = contactForm;
 
     if (!name || !email || !message) {
-      Alert.alert('Missing Field(s)', 'Please make sure name, email and message are filled out.');
+      onError('Please make sure name, email and message are filled out.');
       return false;
     }
     if (!validator.isEmail(email)) {
-      Alert.alert('Error', 'Unrecognized email format');
+      onError('Unrecognized email format');
       return false;
     }
     if (phone && !validator.isMobilePhone(phone, 'en-US')) {
-      Alert.alert('Error', 'Unrecognized phone number format');
+      onError('Unrecognized phone number format');
       return false;
     }
 
