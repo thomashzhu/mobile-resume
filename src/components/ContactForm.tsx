@@ -53,6 +53,10 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
     const { contactForm, clearContactForm, onFormSubmitted } = this.props;
     const { name, email, phone, message } = contactForm;
 
+    if (!name || !email || !message) {
+      Alert.alert('Missing Field(s)', 'Please make sure name, email and message are filled out.');
+      return false;
+    }
     if (!validator.isEmail(email)) {
       Alert.alert('Error', 'Unrecognized email format');
       return false;
@@ -73,8 +77,8 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
       onFormSubmitted();
 
       return true;
-    } catch(e) {
-      console.log(e);
+    } catch (error) {
+      Alert.alert('Error', `${error}`);
       return false;
     }
   };
@@ -83,8 +87,6 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
   render() {
     const { contactForm, style } = this.props;
     const { name, email, phone, message } = contactForm;
-
-    console.log('this.shouldResetSlider', this.shouldResetSlider);
 
     return (
       <View style={[styles.container, style]}>
