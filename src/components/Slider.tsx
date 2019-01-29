@@ -37,7 +37,8 @@ export class Slider extends React.Component<Props> {
 
   handleTouchMove = (left: number) => {
     const { size } = this.props;
-    this.left.setValue(Math.min(left, this.containerWidth - size));
+    // Make sure 0 <= left <= this.containerWidth - size
+    this.left.setValue(Math.max(0, Math.min(left, this.containerWidth - size)));
   }
 
   handleTouchEnd = (left: number) => {

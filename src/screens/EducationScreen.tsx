@@ -6,7 +6,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { Constants } from 'expo';
+import { Constants, WebBrowser } from 'expo';
 
 import { EDUCATION_DATA } from '../resources/data';
 import { Content } from '../values/types';
@@ -25,10 +25,16 @@ type State = {
 };
 
 export class EducationScreen extends React.Component<Props, State> {
+  handlePressOrganization = (organizationUrl?: string) => (
+    !organizationUrl ? undefined : () => {
+      WebBrowser.openBrowserAsync(organizationUrl);
+    }
+  );
+
   renderEducationItem = (info: ListRenderItemInfo<Content>) => {
     const { item, index } = info;
     const {
-      id, title, organization, fromDate, toDate, location, summary, descriptions,
+      id, title, organization, organizationUrl, fromDate, toDate, location, summary, descriptions,
     } = item;
 
     return (
@@ -38,6 +44,7 @@ export class EducationScreen extends React.Component<Props, State> {
           key={id}
           title={title}
           organization={organization}
+          onPressOrganization={this.handlePressOrganization(organizationUrl)}
           fromDate={fromDate}
           toDate={toDate}
           location={location}

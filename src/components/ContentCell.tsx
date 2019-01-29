@@ -16,6 +16,7 @@ const VERTICAL_SPACE = 16;
 type Props = {
   title: string;
   organization: string;
+  onPressOrganization?: () => void;
   fromDate: string;
   toDate?: string;
   location: string;
@@ -28,7 +29,8 @@ type Props = {
 
 export const ContentCell: React.FunctionComponent<Props> = (props) => {
   const {
-    title, organization, fromDate, toDate, location, summary, descriptions, onShowDetailLinkPress, maxBulletsVisible, isSingleView,
+    title, organization, onPressOrganization, fromDate, toDate, location, summary, 
+    descriptions, onShowDetailLinkPress, maxBulletsVisible, isSingleView,
   } = props;
 
   const getDescription = (description: string, index: number) => (
@@ -44,7 +46,21 @@ export const ContentCell: React.FunctionComponent<Props> = (props) => {
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       
-      <Text style={styles.organization}>{organization}</Text>
+      <TouchableOpacity
+        activeOpacity={onPressOrganization ? 0.5 : 1}
+        onPress={onPressOrganization}
+        style={styles.organizationContainer}
+      >
+        <Text style={styles.organization}>{organization}</Text>
+
+        {onPressOrganization && (
+          <Entypo
+            name="link"
+            size={14}
+            style={styles.organizationAnchorIcon}
+          />
+        )}
+      </TouchableOpacity>
 
       <View style={styles.infoRow}>
         <Entypo
@@ -106,9 +122,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 4,
   },
+  organizationContainer: {
+    flexDirection: 'row',
+  },
   organization: {
     color: `${colors.primary}`,
     marginBottom: 5,
+  },
+  organizationAnchorIcon: {
+    color: `${colors.primary}`,
+    marginLeft: 3,
+    marginTop: 2, // Setting alignItem to center in parent container still shows offset
   },
   infoRow: {
     alignItems: 'center',

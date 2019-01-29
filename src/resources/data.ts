@@ -5,6 +5,7 @@ export const EDUCATION_DATA: Content[] = [
     id: 4,
     title: 'Android Developer Nanodegree',
     organization: 'Udacity',
+    organizationUrl: 'https://confirm.udacity.com/MHYH9EPA',
     fromDate: '01/2018',
     toDate: '10/2018',
     location: 'San Francisco, CA',
