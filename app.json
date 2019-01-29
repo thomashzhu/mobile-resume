@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Thomas Zhu",
+    "name": "Thomas Zhu's Resume",
     "slug": "tz-mobile-resume",
     "privacy": "public",
     "sdkVersion": "32.0.0",
@@ -24,6 +24,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": ""
   }
 }

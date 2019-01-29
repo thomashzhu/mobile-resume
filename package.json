@@ -30,6 +30,7 @@
     "@types/expo": "^31.0.8",
     "@types/expo__vector-icons": "^6.2.3",
     "@types/jest": "^23.3.13",
+    "@types/qs": "^6.5.1",
     "@types/react": "^16.7.20",
     "@types/react-native": "^0.57.32",
     "@types/react-navigation": "^3.0.1",

@@ -56,8 +56,8 @@ export class AboutAppScreen extends React.Component<Props, State> {
           <View style={styles.paragraph}>
             <Text style={styles.text}>
               I will be randomly improving this app as I learn more about React Native. Some improvements include integrating 
-              Mailgun to send direct email to my mailbox, use folding cells for list display, and add app intro sliders, etc. Of 
-              course, if there's a change on my resume, I will update here as well.
+              reCAPTCHA and Mailgun to send direct email to my mailbox, use folding cells for list display, and add app intro sliders, 
+              etc. Of course, if there's a change on my resume, I will update here as well.
             </Text>
           </View>
 

@@ -49,7 +49,6 @@ export class ExperiencesScreen extends React.Component<Props, State> {
     return (
       <View>
         <ContentCell
-          isSingleView={false}
           key={id}
           title={title}
           organization={organization}
@@ -57,7 +56,9 @@ export class ExperiencesScreen extends React.Component<Props, State> {
           toDate={toDate}
           location={location}
           descriptions={descriptions}
+          maxBulletsVisible={3}
           onShowDetailLinkPress={this.handleShowDetailPress(item)}
+          isSingleView={false}
         />
 
         {this.renderSeparator(index)}
@@ -108,9 +109,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: HORIZONTAL_SPACE,
   },
   list: {
-    paddingTop: VERTICAL_SPACE,
+    paddingVertical: VERTICAL_SPACE,
   },
   lastItem: {
-    marginBottom: VERTICAL_SPACE,
+    height: VERTICAL_SPACE,
+    marginTop: VERTICAL_SPACE,
   },
 });

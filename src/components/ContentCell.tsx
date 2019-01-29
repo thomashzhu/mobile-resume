@@ -14,7 +14,6 @@ import { Divider } from './Divider';
 const VERTICAL_SPACE = 16;
 
 type Props = {
-  isSingleView: boolean;
   title: string;
   organization: string;
   fromDate: string;
@@ -23,11 +22,13 @@ type Props = {
   summary?: string;
   descriptions: string[];
   onShowDetailLinkPress?: () => void;
+  maxBulletsVisible: number;
+  isSingleView: boolean;
 };
 
 export const ContentCell: React.FunctionComponent<Props> = (props) => {
   const {
-    isSingleView, title, organization, fromDate, toDate, location, summary, descriptions, onShowDetailLinkPress,
+    title, organization, fromDate, toDate, location, summary, descriptions, onShowDetailLinkPress, maxBulletsVisible, isSingleView,
   } = props;
 
   const getDescription = (description: string, index: number) => (
@@ -73,9 +74,9 @@ export const ContentCell: React.FunctionComponent<Props> = (props) => {
 
         {summary && <Text style={styles.description}>{summary}</Text>}
 
-        {onShowDetailLinkPress && descriptions.length >= 3 ? (
+        {onShowDetailLinkPress && descriptions.length > maxBulletsVisible ? (
           <View>
-            { descriptions.slice(0, 2).map(getDescription) }
+            { descriptions.slice(0, maxBulletsVisible).map(getDescription) }
 
             <TouchableOpacity
               onPress={onShowDetailLinkPress}
