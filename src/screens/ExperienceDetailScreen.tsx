@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   SafeAreaView,
+  ScrollView,
   StyleSheet,
 } from 'react-native';
 import {
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
+    paddingBottom: VERTICAL_SPACE,
   },
   headerButton: {
     color: `${colors.primary}`,

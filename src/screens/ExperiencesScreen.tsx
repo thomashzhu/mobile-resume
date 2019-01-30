@@ -75,11 +75,8 @@ export class ExperiencesScreen extends React.Component<Props, State> {
           spacing={VERTICAL_SPACE}
         />
       );
-    } else {
-      return (
-        <View style={styles.lastItem} />
-      );
     }
+    return <View style={styles.bottomSpace} />;
   }
 
   render() {
@@ -90,7 +87,6 @@ export class ExperiencesScreen extends React.Component<Props, State> {
           keyExtractor={({ id }) => id.toString()}
           renderItem={this.renderExperienceItem}
           showsVerticalScrollIndicator={false}
-          style={styles.list}
         />
       </View>
     );
@@ -107,12 +103,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: statusBarHeight,
     paddingHorizontal: HORIZONTAL_SPACE,
+    paddingTop: VERTICAL_SPACE,
   },
-  list: {
-    paddingVertical: VERTICAL_SPACE,
-  },
-  lastItem: {
-    height: VERTICAL_SPACE,
+  bottomSpace: {
     marginTop: VERTICAL_SPACE,
   },
 });

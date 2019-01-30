@@ -3,6 +3,7 @@ import {
   FlatList,
   ListRenderItemInfo,
   Platform,
+  SafeAreaView,
   StyleSheet,
   View,
 } from 'react-native';
@@ -66,23 +67,20 @@ export class EducationScreen extends React.Component<Props, State> {
           spacing={VERTICAL_SPACE}
         />
       );
-    } else {
-      return (
-        <View style={styles.lastItem} />
-      );
     }
-  }
+    return <View style={styles.bottomSpace} />;
+  };
 
   render() {
     return (
-      <View style={styles.safeAreaView}>
+      <SafeAreaView style={styles.safeAreaView}>
         <FlatList
           data={EDUCATION_DATA}
           keyExtractor={({ id }) => id.toString()}
           renderItem={this.renderEducationItem}
-          style={styles.list}
+          showsVerticalScrollIndicator={false}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -97,11 +95,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: statusBarHeight,
     paddingHorizontal: HORIZONTAL_SPACE,
-  },
-  list: {
     paddingTop: VERTICAL_SPACE,
   },
-  lastItem: {
-    marginBottom: VERTICAL_SPACE,
+  bottomSpace: {
+    marginTop: VERTICAL_SPACE,
   },
 });

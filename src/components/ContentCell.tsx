@@ -102,7 +102,10 @@ export const ContentCell: React.FunctionComponent<Props> = (props) => {
             </TouchableOpacity>
           </View>
         ) : (
-          <ScrollView contentContainerStyle={styles.descriptionGroup}>
+          <ScrollView
+            contentContainerStyle={styles.descriptionGroup}
+            showsVerticalScrollIndicator={false}
+          >
             {descriptions.map(getDescription)}
           </ScrollView>
         )}
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
     color: `${colors.secondary}`,
   },
   descriptionGroup: {
-    flex: 1,
+    flexGrow: 1,
   },
   description: {
     color: `${colors.secondary}`,

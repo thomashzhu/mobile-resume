@@ -20,7 +20,6 @@ type Props = {
 
 export class Slider extends React.Component<Props> {
   left = new Animated.Value(0);
-  scale = new Animated.Value(1);
 
   containerWidth: number;
 
@@ -28,18 +27,13 @@ export class Slider extends React.Component<Props> {
     didSlideToEnd: false,
   };
 
-  handleTouchStart = () => {
-    Animated.timing(this.scale, {
-      toValue: 1.15,
-      useNativeDriver: true,
-    }).start();
-  }
+  handleTouchStart = () => {};
 
   handleTouchMove = (left: number) => {
     const { size } = this.props;
     // Make sure 0 <= left <= this.containerWidth - size
     this.left.setValue(Math.max(0, Math.min(left, this.containerWidth - size)));
-  }
+  };
 
   handleTouchEnd = (left: number) => {
     const { onSlideToEnd, size } = this.props;
@@ -62,12 +56,7 @@ export class Slider extends React.Component<Props> {
         if (!successful) this.resetSlider();
       });
     }
-
-    Animated.timing(this.scale, {
-      toValue: 1,
-      useNativeDriver: true,
-    }).start();
-  }
+  };
 
   resetSlider = () => {
     Animated.timing(this.left, {
@@ -113,10 +102,7 @@ export class Slider extends React.Component<Props> {
         >
           {({ handlers }) => {
             const transformStyle = {
-              transform: [
-                { translateX: this.left },
-                { scale: this.scale },
-              ],
+              transform: [{ translateX: this.left }],
             };
 
             return (
