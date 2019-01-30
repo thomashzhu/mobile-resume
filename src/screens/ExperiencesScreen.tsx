@@ -1,10 +1,11 @@
 import React from 'react';
 import {
   FlatList,
+  ListRenderItemInfo,
   Platform,
+  SafeAreaView,
   StyleSheet,
   View,
-  ListRenderItemInfo,
 } from 'react-native';
 import { Constants } from 'expo';
 import {
@@ -24,9 +25,7 @@ type Props = {
   navigation: NavigationScreenProp<NavigationState>
 };
 
-type State = {
-  
-};
+type State = {};
 
 export class ExperiencesScreen extends React.Component<Props, State> {
   static navigationOptions = {
@@ -81,14 +80,14 @@ export class ExperiencesScreen extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.safeAreaView}>
+      <SafeAreaView style={styles.safeAreaView}>
         <FlatList
           data={EXPERIENCES_DATA}
           keyExtractor={({ id }) => id.toString()}
           renderItem={this.renderExperienceItem}
           showsVerticalScrollIndicator={false}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -101,9 +100,8 @@ const statusBarHeight = (Platform.OS === 'ios' && Number(`${Platform.Version}`) 
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    marginTop: statusBarHeight,
+    marginTop: statusBarHeight + VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
-    paddingTop: VERTICAL_SPACE,
   },
   bottomSpace: {
     marginTop: VERTICAL_SPACE,

@@ -17,13 +17,9 @@ import { RECOGNITION_DATA } from '../resources/data';
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
 
-type Props = {
-  
-};
+type Props = {};
 
-type State = {
-  
-};
+type State = {};
 
 export class RecognitionScreen extends React.Component<Props, State> {
   renderRecognitionSectionHeader = ({ section }: { section: SectionListData<string> }) => {
@@ -86,7 +82,7 @@ const styles = StyleSheet.create({
   },
   header: {
     color: `${colors.primary}`,
-    fontSize: 22,
+    fontSize: 18,
     paddingVertical: 8,
     textTransform: 'uppercase',
   },

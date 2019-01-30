@@ -22,9 +22,7 @@ type Props = {
   navigation: NavigationScreenProp<NavigationState>
 };
 
-type State = {
-  
-};
+type State = {};
 
 export class AboutAppScreen extends React.Component<Props, State> {
   static navigationOptions = {

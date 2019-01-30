@@ -110,11 +110,12 @@ export class Slider extends React.Component<Props> {
                 {...handlers}
                 style={[styles.sliderCircle, sliderCircleStyle, transformStyle]}
               >
-                <ActivityIndicator
-                  animating={didSlideToEnd}
-                  color={`${colors.white}`}
-                  size="small"
-                />
+                {didSlideToEnd && (
+                  <ActivityIndicator
+                    color={`${colors.white}`}
+                    size="small"
+                  />
+                )}
               </Animated.View>
             );
           }}

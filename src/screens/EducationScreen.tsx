@@ -17,13 +17,9 @@ import { Divider } from '../components/Divider';
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
 
-type Props = {
-  
-};
+type Props = {};
 
-type State = {
-  
-};
+type State = {};
 
 export class EducationScreen extends React.Component<Props, State> {
   handlePressOrganization = (organizationUrl?: string) => (
@@ -93,9 +89,8 @@ const statusBarHeight = (Platform.OS === 'ios' && Number(`${Platform.Version}`) 
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    marginTop: statusBarHeight,
+    marginTop: statusBarHeight + VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
-    paddingTop: VERTICAL_SPACE,
   },
   bottomSpace: {
     marginTop: VERTICAL_SPACE,

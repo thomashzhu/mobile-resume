@@ -17,9 +17,7 @@ import { Divider } from '../components/Divider';
 const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
 
-type Props = {
-  
-};
+type Props = {};
 
 type State = {
   isAvatarShowing: boolean;

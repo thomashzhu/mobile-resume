@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Platform,
+  SafeAreaView,
   SectionList,
   SectionListData,
   SectionListRenderItemInfo,
@@ -14,7 +15,13 @@ import { CircledText } from '../components/CircledText';
 import { colors } from '../values/colors';
 import { SKILLS_DATA } from '../resources/data';
 
-export class SkillsScreen extends React.Component {
+const VERTICAL_SPACE = 16;
+
+type Props = {};
+
+type State = {};
+
+export class SkillsScreen extends React.Component<Props, State> {
   sectionData = SKILLS_DATA.map(section => ({
     ...section, data: [section.title],
   }));
@@ -50,15 +57,16 @@ export class SkillsScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.safeAreaView}>
+      <SafeAreaView style={styles.safeAreaView}>
         <SectionList
           keyExtractor={(item: string) => item}
           renderItem={this.renderSkillSectionListItem}
           renderSectionHeader={this.renderSkillSectionHeader} 
           sections={this.sectionData}
+          showsVerticalScrollIndicator={false}
           stickySectionHeadersEnabled={false}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -71,7 +79,7 @@ const statusBarHeight = (Platform.OS === 'ios' && Number(`${Platform.Version}`) 
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    marginTop: statusBarHeight,
+    marginTop: statusBarHeight + VERTICAL_SPACE,
     paddingHorizontal: 16,
   },
   header: {
