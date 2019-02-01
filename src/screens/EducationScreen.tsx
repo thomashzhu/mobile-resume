@@ -62,7 +62,7 @@ export class EducationScreen extends React.Component<Props, State> {
         />
       );
     }
-    return <View style={styles.bottomSpace} />;
+    return <View style={styles.blankSpace} />;
   };
 
   render() {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     marginTop: statusBarHeight + VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
   },
-  bottomSpace: {
+  blankSpace: {
     marginTop: VERTICAL_SPACE,
   },
 });

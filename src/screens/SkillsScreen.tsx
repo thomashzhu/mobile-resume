@@ -59,12 +59,14 @@ export class SkillsScreen extends React.Component<Props, State> {
       <SafeAreaView style={styles.safeAreaView}>
         <SectionList
           keyExtractor={(item: string) => item}
+          // paddingBottom doesn't well with a SectionList and marginBottom shows a 
+          // blank space that blocks view.
+          ListFooterComponent={() => <View style={styles.blankSpace}/>}
           renderItem={this.renderSkillSectionListItem}
           renderSectionHeader={this.renderSkillSectionHeader} 
           sections={this.sectionData}
           showsVerticalScrollIndicator={false}
           stickySectionHeadersEnabled={false}
-          style={styles.list}
         />
       </SafeAreaView>
     );
@@ -84,9 +86,6 @@ const styles = StyleSheet.create({
     marginTop: statusBarHeight + VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
   },
-  list: {
-    marginBottom: VERTICAL_SPACE,
-  },
   header: {
     color: `${colors.primary}`,
     fontSize: 18,
@@ -96,5 +95,8 @@ const styles = StyleSheet.create({
   itemGroup: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+  },
+  blankSpace: {
+    marginTop: VERTICAL_SPACE,
   },
 });

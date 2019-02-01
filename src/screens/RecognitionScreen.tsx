@@ -45,6 +45,9 @@ export class RecognitionScreen extends React.Component<Props, State> {
       <SafeAreaView style={styles.safeAreaView}>
         <SectionList
           keyExtractor={(item) => item}
+          // paddingBottom doesn't well with a SectionList and marginBottom shows a 
+          // blank space that blocks view.
+          ListFooterComponent={() => <View style={styles.blankSpace}/>}
           renderItem={this.renderRecognitionSectionListItem}
           renderSectionHeader={this.renderRecognitionSectionHeader} 
           sections={RECOGNITION_DATA}
@@ -99,5 +102,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 12,
     color: `${colors.black.alpha(0.15)}`,
+  },
+  blankSpace: {
+    marginTop: VERTICAL_SPACE,
   },
 });

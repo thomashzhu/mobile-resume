@@ -12,6 +12,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from '../values/colors';
 
 type Props = {
+  autoDismissInterval?: number;
   error?: string;
   onDismiss: () => void;
   style?: StyleProp<ViewStyle>,
@@ -21,23 +22,47 @@ type Props = {
 type State = {};
 
 export class ErrorDialog extends React.Component<Props, State> {
+  intervalId: number;
   opacity = new Animated.Value(0);
 
   componentDidMount() {
-    this.playOpacityAnimation();
+    this.showErrorDialog();
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.error) this.playOpacityAnimation();
+    if (nextProps.error) this.showErrorDialog();
   }
 
-  playOpacityAnimation = () => {
+  componentWillUnmount() {
+    this.stopTimer();
+  }
+
+  showErrorDialog = () => {
     Animated.timing(this.opacity, {
       duration: 350,
       toValue: 1,
       useNativeDriver: true,
-    }).start();
+    }).start(() => {
+      this.startTimer();
+    });
   }
+
+  startTimer = () => {
+    const { autoDismissInterval, onDismiss } = this.props;
+
+    if (autoDismissInterval && autoDismissInterval > 0) {
+      this.stopTimer();
+      this.intervalId = setInterval(() => {
+        // return statement is used to override setInterval (from the timers library) 
+        // which has the same method name, but different return value type
+        return onDismiss();
+      }, autoDismissInterval);
+    }
+  };
+
+  stopTimer = () => {
+    if (this.intervalId) clearInterval(this.intervalId);
+  };
 
   render() {
     const { onDismiss, error, visible } = this.props;

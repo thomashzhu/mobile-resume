@@ -71,6 +71,7 @@ export class _ContactScreen extends React.Component<Props, State> {
 
         {!!error && (
           <ErrorDialog
+            autoDismissInterval={4000}
             error={error}
             onDismiss={this.handleDismiss}
             visible
