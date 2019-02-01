@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Dimensions,
   Image,
+  Platform,
   StyleSheet,
   Text,
   View,
@@ -129,6 +130,8 @@ export class ProfileScreen extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   container: {
+    // TODO: Temporary solution to ExpoKit bug that splash screen will always remain visible on Android
+    backgroundColor: Platform.OS === 'ios' ? null : '#FFFFFF',
     flex: 1,
   },
   headerButton: {

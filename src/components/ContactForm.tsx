@@ -146,13 +146,13 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
             underlineColorAndroid="transparent"
             value={message}
           />
-
-          <Slider
-            onSlideToEnd={this.handleSlideToEnd}
-            reset={this.shouldResetSlider}
-            size={SLIDER_SIZE}
-          />
         </ScrollView>
+
+        <Slider
+          onSlideToEnd={this.handleSlideToEnd}
+          reset={this.shouldResetSlider}
+          size={SLIDER_SIZE}
+        />
       </KeyboardAvoidingView>
     );
   }
@@ -177,18 +177,6 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === 'ios' ? 0 : 4,
     minHeight: 96,
     textAlignVertical: 'top',
-  },
-  submitButton: {
-    alignItems: 'center',
-    borderRadius: 24,
-    height: 46,
-    justifyContent: 'center',
-  },
-  submitButtonText: {
-    color: `${colors.white}`,
-    fontSize: 24,
-    fontWeight: '200',
-    letterSpacing: 1.2,
   },
 });
 

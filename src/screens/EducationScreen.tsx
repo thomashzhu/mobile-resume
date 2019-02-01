@@ -88,6 +88,8 @@ const statusBarHeight = (Platform.OS === 'ios' && Number(`${Platform.Version}`) 
 
 const styles = StyleSheet.create({
   safeAreaView: {
+    // TODO: Temporary solution to ExpoKit bug that splash screen will always remain visible on Android
+    backgroundColor: Platform.OS === 'ios' ? null : '#FFFFFF',
     flex: 1,
     marginTop: statusBarHeight + VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
