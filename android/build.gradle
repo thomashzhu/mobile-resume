@@ -5,6 +5,8 @@ buildscript {
     google()
     jcenter()
     maven { url 'https://dl.bintray.com/android/android-tools/' }
+    maven { url "https://jitpack.io" }
+    maven { url "https://maven.google.com" }
   }
   dependencies {
     classpath 'com.android.tools.build:gradle:3.2.1'

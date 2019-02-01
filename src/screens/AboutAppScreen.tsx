@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -73,22 +72,18 @@ export class AboutAppScreen extends React.Component<Props, State> {
           onPress={() => navigation.goBack()}
           style={styles.circleButton}
         />
-        
       </View>
     );
   }
 }
 
-const statusBarHeight = (Platform.OS === 'ios' && Number(`${Platform.Version}`) >= 11
-  ? 0
-  : Constants.statusBarHeight
-);
+const statusBarHeight = Constants.statusBarHeight;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: statusBarHeight + VERTICAL_SPACE,
-    paddingHorizontal: HORIZONTAL_SPACE,
+    marginHorizontal: HORIZONTAL_SPACE,
   },
   paragraph: {
     marginBottom: 10,

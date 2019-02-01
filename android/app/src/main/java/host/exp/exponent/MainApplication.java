@@ -32,8 +32,11 @@ import expo.modules.sms.SMSPackage;
 import expo.modules.taskManager.TaskManagerPackage;
 import expolib_v1.okhttp3.OkHttpClient;
 
+import com.mapbox.rctmgl.RCTMGLPackage;
+
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
+import com.mapbox.rctmgl.RCTMGLPackage;
 
 public class MainApplication extends ExpoApplication implements AppLoaderPackagesProviderInterface<ReactPackage> {
 
@@ -49,7 +52,8 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
         // TODO: add native modules!
 
         // Needed for `react-native link`
-        // new MainReactPackage()
+        // new MainReactPackage(),
+            new RCTMGLPackage()
     );
   }
 

@@ -1,12 +1,10 @@
 import React from 'react';
 import {
-  KeyboardAvoidingView,
   StyleSheet,
   View,
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
-  Header,
   NavigationScreenConfig,
   NavigationScreenOptions,
   NavigationScreenProp,
@@ -21,7 +19,6 @@ import { ContactFormReduxState } from '../reducers/contact_form';
 import { ErrorDialog } from '../components/ErrorDialog';
 
 const HORIZONTAL_SPACE = 16;
-const VERTICAL_SPACE = 16;
 
 type Props = {
   contactForm: ContactFormReduxState,
@@ -67,17 +64,11 @@ export class _ContactScreen extends React.Component<Props, State> {
 
     return (
       <View style={styles.container}>
-        <KeyboardAvoidingView
-          behavior="padding"
-          style={{ flex: 1 }}
-          keyboardVerticalOffset={Header.HEIGHT + 20}
-        >
-          <ContactForm
-            onFormSubmitted={() => navigation.goBack()}
-            onError={this.handleError}
-            style={styles.contactForm}
-          />
-        </KeyboardAvoidingView>
+        <ContactForm
+          onFormSubmitted={() => navigation.goBack()}
+          onError={this.handleError}
+          style={styles.contactForm}
+        />
 
         {!!error && (
           <ErrorDialog
@@ -97,8 +88,7 @@ const styles = StyleSheet.create({
   },
   contactForm: {
     flex: 1,
-    paddingHorizontal: HORIZONTAL_SPACE,
-    paddingVertical: VERTICAL_SPACE,
+    marginHorizontal: HORIZONTAL_SPACE,
   },
   headerButton: {
     color: `${colors.primary}`,

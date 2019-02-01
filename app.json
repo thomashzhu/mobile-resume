@@ -29,7 +29,7 @@
       "publishManifestPath": "ios/thomas-zhu-s-resume/Supporting/shell-app-manifest.json"
     },
     "android": {
-      "package": "com.thomaszhu.mobile-resume",
+      "package": "com.thomaszhu.mobileresume",
       "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
       "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
     },

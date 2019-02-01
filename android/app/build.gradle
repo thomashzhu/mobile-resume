@@ -20,7 +20,7 @@ android {
   compileSdkVersion 27
 
   defaultConfig {
-    applicationId 'com.thomaszhu.mobile-resume'
+    applicationId 'com.thomaszhu.mobileresume'
     minSdkVersion 21
     targetSdkVersion 26
     versionCode 1
@@ -104,6 +104,7 @@ apply from: 'expo.gradle'
 // WHEN_PREPARING_SHELL_REMOVE_TO_HERE
 
 dependencies {
+    compile project(':@mapbox_react-native-mapbox-gl')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
   implementation 'com.android.support:multidex:1.0.1'
@@ -189,7 +190,7 @@ dependencies {
     exclude group: 'com.squareup.okhttp3', module: 'okhttp-urlconnection'
   }
   
-
+  compile project(':mapbox-react-native-mapbox-gl')
 
   
   api 'com.facebook.react:react-native:32.0.0'

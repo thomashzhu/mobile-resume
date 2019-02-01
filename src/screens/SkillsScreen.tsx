@@ -15,6 +15,7 @@ import { CircledText } from '../components/CircledText';
 import { colors } from '../values/colors';
 import { SKILLS_DATA } from '../resources/data';
 
+const HORIZONTAL_SPACE = 16;
 const VERTICAL_SPACE = 16;
 
 type Props = {};
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
     marginTop: statusBarHeight + VERTICAL_SPACE,
-    paddingHorizontal: 16,
+    paddingHorizontal: HORIZONTAL_SPACE,
   },
   header: {
     color: `${colors.primary}`,

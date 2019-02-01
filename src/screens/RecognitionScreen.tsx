@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Platform,
+  SafeAreaView,
   SectionList,
   SectionListData,
   SectionListRenderItemInfo,
@@ -43,7 +44,7 @@ export class RecognitionScreen extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.safeAreaView}>
+      <SafeAreaView style={styles.safeAreaView}>
         <SectionList
           keyExtractor={(item) => item}
           renderItem={this.renderRecognitionSectionListItem}
@@ -60,7 +61,7 @@ export class RecognitionScreen extends React.Component<Props, State> {
             style={styles.backgroundIcon}
           />
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -73,11 +74,10 @@ const statusBarHeight = (Platform.OS === 'ios' && Number(`${Platform.Version}`) 
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    marginTop: statusBarHeight,
+    marginTop: statusBarHeight + VERTICAL_SPACE,
     paddingHorizontal: HORIZONTAL_SPACE,
   },
   list: {
-    paddingTop: VERTICAL_SPACE,
     backgroundColor: null,
   },
   header: {

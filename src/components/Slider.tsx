@@ -2,9 +2,11 @@ import React from 'react';
 import {
   ActivityIndicator,
   Animated,
+  StyleProp,
   StyleSheet,
   Text,
   View,
+  ViewStyle,
 } from 'react-native';
 
 import { colors } from '../values/colors';
@@ -13,9 +15,10 @@ import { Draggable } from './Draggable';
 const FULL_SLIDER_QUALIFICATION_RATIO = 0.90;
 
 type Props = {
-  size: number;
-  reset: boolean;
   onSlideToEnd: () => Promise<boolean>;
+  reset: boolean;
+  size: number;
+  style?: StyleProp<ViewStyle>,
 };
 
 export class Slider extends React.Component<Props> {
@@ -68,7 +71,7 @@ export class Slider extends React.Component<Props> {
   };
 
   render() {
-    const { size } = this.props;
+    const { size, style } = this.props;
     const { didSlideToEnd } = this.state;
 
     const containerStyle = {
@@ -86,7 +89,7 @@ export class Slider extends React.Component<Props> {
     return (
       <View
         onLayout={({nativeEvent: { layout: { width }}}) => this.containerWidth = width}
-        style={containerStyle}
+        style={[containerStyle, style || {}]}
       >
         <View style={styles.sliderTextContainer}>
           <Text style={styles.sliderText}>

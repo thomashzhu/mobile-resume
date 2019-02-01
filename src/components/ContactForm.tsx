@@ -2,13 +2,14 @@ import React from 'react';
 import {
   Alert,
   Animated,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
   StyleProp,
   StyleSheet,
   Text,
   TextInput,
-  View,
   ViewStyle,
-  ScrollView,
 } from 'react-native';
 import { connect } from 'react-redux';
 import validator from 'validator';
@@ -18,8 +19,10 @@ import { ContactFormReduxState } from '../reducers/contact_form';
 import { colors } from '../values/colors';
 import { sendEmail } from '../utils/send_email';
 import { Slider } from './Slider';
+import { Header } from 'react-navigation';
 
 const SLIDER_SIZE = 48;
+const VERTICAL_SPACE = 16;
 
 type Props = {
   contactForm: ContactFormReduxState,
@@ -92,42 +95,49 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
     const { name, email, phone, message } = contactForm;
 
     return (
-      <View style={[styles.container, style]}>
-        <Text style={styles.label}>Name</Text>
-        <TextInput
-          autoCapitalize="words"
-          autoCorrect={false}
-          onChangeText={this.handleChangeText('name')}
-          placeholder="John Doe"
-          style={styles.inputField}
-          underlineColorAndroid="transparent"
-          value={name}
-        />
+      <KeyboardAvoidingView
+        behavior="padding"
+        keyboardVerticalOffset={Header.HEIGHT + 38}
+        style={[styles.container, style]}
+      >
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          showsVerticalScrollIndicator={false}
+        >
+          <Text style={styles.label}>Name</Text>
+          <TextInput
+            autoCapitalize="words"
+            autoCorrect={false}
+            onChangeText={this.handleChangeText('name')}
+            placeholder="John Doe"
+            style={styles.inputField}
+            underlineColorAndroid="transparent"
+            value={name}
+          />
 
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          keyboardType="email-address"
-          onChangeText={this.handleChangeText('email')}
-          placeholder="john.doe@gmail.com"
-          style={styles.inputField}
-          underlineColorAndroid="transparent"
-          value={email}
-        />
+          <Text style={styles.label}>Email</Text>
+          <TextInput
+            autoCapitalize="none"
+            autoCorrect={false}
+            keyboardType="email-address"
+            onChangeText={this.handleChangeText('email')}
+            placeholder="john.doe@gmail.com"
+            style={styles.inputField}
+            underlineColorAndroid="transparent"
+            value={email}
+          />
 
-        <Text style={styles.label}>Phone (optional)</Text>
-        <TextInput
-          keyboardType="phone-pad"
-          onChangeText={this.handleChangeText('phone')}
-          placeholder="000-000-0000"
-          style={styles.inputField}
-          underlineColorAndroid="transparent"
-          value={phone}
-        />
+          <Text style={styles.label}>Phone (optional)</Text>
+          <TextInput
+            keyboardType="phone-pad"
+            onChangeText={this.handleChangeText('phone')}
+            placeholder="000-000-0000"
+            style={styles.inputField}
+            underlineColorAndroid="transparent"
+            value={phone}
+          />
 
-        <Text style={styles.label}>Message</Text>
-        <ScrollView style={styles.messageContainer}>
+          <Text style={styles.label}>Message</Text>
           <TextInput
             multiline
             onChangeText={this.handleChangeText('message')}
@@ -136,14 +146,14 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
             underlineColorAndroid="transparent"
             value={message}
           />
-        </ScrollView>
 
-        <Slider
-          onSlideToEnd={this.handleSlideToEnd}
-          reset={this.shouldResetSlider}
-          size={SLIDER_SIZE}
-        />
-      </View>
+          <Slider
+            onSlideToEnd={this.handleSlideToEnd}
+            reset={this.shouldResetSlider}
+            size={SLIDER_SIZE}
+          />
+        </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -151,22 +161,22 @@ export class _ContactForm extends React.Component<Props & typeof DEFAULT_PROPS, 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginVertical: VERTICAL_SPACE,
   },
   label: {
     color: `${colors.secondary}`,
     fontSize: 14,
+    marginBottom: Platform.OS === 'ios' ? 14 : 8,
     textTransform: 'uppercase',
   },
   inputField: {
-    marginTop: 6,
-    marginBottom: 16,
-  },
-  messageContainer: {
-    flex: 1,
-    marginVertical: 6,
+    marginBottom: 14,
   },
   messageField: {
-    height: 96,
+    flex: 1,
+    marginTop: Platform.OS === 'ios' ? 0 : 4,
+    minHeight: 96,
+    textAlignVertical: 'top',
   },
   submitButton: {
     alignItems: 'center',
