@@ -17,8 +17,7 @@ import { colors } from '../values/colors';
 import { ReduxState } from '../reducers';
 import { ContactFormReduxState } from '../reducers/contact_form';
 import { ErrorDialog } from '../components/ErrorDialog';
-
-const HORIZONTAL_SPACE = 16;
+import { HORIZONTAL_SPACE } from '../values/constants';
 
 type Props = {
   contactForm: ContactFormReduxState,

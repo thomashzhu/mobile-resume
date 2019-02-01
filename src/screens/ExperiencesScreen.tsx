@@ -17,9 +17,7 @@ import { ContentCell } from '../components/ContentCell';
 import { Divider } from '../components/Divider';
 import { EXPERIENCES_DATA } from '../resources/data';
 import { Content } from '../values/types';
-
-const HORIZONTAL_SPACE = 16;
-const VERTICAL_SPACE = 16;
+import { HORIZONTAL_SPACE, VERTICAL_SPACE } from '../values/constants';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>

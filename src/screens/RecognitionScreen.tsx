@@ -14,9 +14,7 @@ import { EvilIcons } from '@expo/vector-icons';
 
 import { colors } from '../values/colors';
 import { RECOGNITION_DATA } from '../resources/data';
-
-const HORIZONTAL_SPACE = 16;
-const VERTICAL_SPACE = 16;
+import { HORIZONTAL_SPACE, VERTICAL_SPACE } from '../values/constants';
 
 type Props = {};
 

@@ -11,9 +11,7 @@ import {
   NavigationState,
 } from 'react-navigation';
 
-const HORIZONTAL_SPACE = 16;
-const VERTICAL_SPACE = 16;
-
+import { HORIZONTAL_SPACE, VERTICAL_SPACE } from '../values/constants';
 import { colors } from '../values/colors';
 import { CircleButton } from '../components/CircleButton';
 
@@ -82,8 +80,8 @@ const statusBarHeight = Constants.statusBarHeight;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: statusBarHeight + VERTICAL_SPACE,
     marginHorizontal: HORIZONTAL_SPACE,
+    marginTop: statusBarHeight + VERTICAL_SPACE,
   },
   paragraph: {
     marginBottom: 10,
@@ -94,9 +92,9 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   circleButton: {
+    bottom: VERTICAL_SPACE + 8,
     position: 'absolute',
-    bottom: 24,
-    right: 24,
+    right: 8,
     zIndex: 1,
   },
 });

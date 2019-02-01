@@ -13,9 +13,7 @@ import {
 
 import { ContentCell } from '../components/ContentCell';
 import { colors } from '../values/colors';
-
-const HORIZONTAL_SPACE = 16;
-const VERTICAL_SPACE = 16;
+import { HORIZONTAL_SPACE, VERTICAL_SPACE } from '../values/constants';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState>,
@@ -57,8 +55,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: VERTICAL_SPACE,
-    paddingHorizontal: HORIZONTAL_SPACE,
     paddingBottom: VERTICAL_SPACE,
+    paddingHorizontal: HORIZONTAL_SPACE,
   },
   headerButton: {
     color: `${colors.primary}`,

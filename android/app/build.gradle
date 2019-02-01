@@ -104,7 +104,6 @@ apply from: 'expo.gradle'
 // WHEN_PREPARING_SHELL_REMOVE_TO_HERE
 
 dependencies {
-    compile project(':@mapbox_react-native-mapbox-gl')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
   implementation 'com.android.support:multidex:1.0.1'
@@ -189,9 +188,13 @@ dependencies {
     exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     exclude group: 'com.squareup.okhttp3', module: 'okhttp-urlconnection'
   }
-  
-  compile project(':mapbox-react-native-mapbox-gl')
 
+  // workaround credit to: https://github.com/mapbox/react-native-mapbox-gl/issues/1139#issuecomment-379647942
+  implementation (project(':mapbox-react-native-mapbox-gl')) {
+    implementation ('com.squareup.okhttp3:okhttp:3.6.0') {
+      force = true
+    }
+  }
   
   api 'com.facebook.react:react-native:32.0.0'
   api 'host.exp.exponent:expo-app-loader-provider:1.0.0'

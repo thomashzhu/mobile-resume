@@ -7,22 +7,24 @@ import {
   Text,
   View,
 } from 'react-native';
-import { MapView, WebBrowser } from 'expo';
+import { WebBrowser } from 'expo';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import MapboxGL from '@mapbox/react-native-mapbox-gl';
 
 import { colors } from '../values/colors';
 import { IconText } from '../components/IconText';
 import { LanguageCell } from '../components/LanguageCell';
 import { Divider } from '../components/Divider';
-
-const HORIZONTAL_SPACE = 16;
-const VERTICAL_SPACE = 16;
+import { HORIZONTAL_SPACE, VERTICAL_SPACE } from '../values/constants';
+import { MAP_BOX_API } from '../values/secrets';
 
 type Props = {};
 
 type State = {
   isAvatarShowing: boolean;
 };
+
+MapboxGL.setAccessToken(MAP_BOX_API);
 
 export class ProfileScreen extends React.Component<Props, State> {
   static navigationOptions = ({ navigation: { navigate }}) => ({
@@ -113,13 +115,9 @@ export class ProfileScreen extends React.Component<Props, State> {
         </View>
 
         <View style={styles.map}>
-          <MapView
-            initialRegion={{
-              latitude: 37.7661,
-              latitudeDelta: 0.09020,
-              longitude: -122.4314,
-              longitudeDelta: 0.1141,
-            }}
+          <MapboxGL.MapView
+            centerCoordinate={[-122.4314, 37.7661]}
+            zoomLevel={Platform.OS === 'ios' ? 11 : 9.5}
             style={StyleSheet.absoluteFill}
           />
         </View>
