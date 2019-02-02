@@ -16,6 +16,27 @@ Turning my resume into a mobile app...
    ```
 4. Build and run the app
 
+## Preview
+<div style={{ display: flex; flex-direction: row; justify-content: space-around }}>
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/00.PNG" width="250" />
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/01-01.PNG" width="250" />
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/01-02.PNG" width="250" />
+</div>
+<div style={{ display: flex; flex-direction: row; justify-content: space-around }}>
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/01-03.PNG" width="250" />
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/01-04.PNG" width="250" />
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/01-05.PNG" width="250" />
+</div>
+<div style={{ display: flex; flex-direction: row; justify-content: space-around }}>
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/02.PNG" width="250" />
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/03-01.PNG" width="250" />
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/03-02.PNG" width="250" />
+</div>
+<div style={{ display: flex; flex-direction: row; justify-content: space-around }}>
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/04.PNG" width="250" />
+   <img src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/screenshots/05.PNG" width="250" />
+</div>
+
 ## Dependencies
 - react, react-native, and ExpoKit
 - react navigation
