@@ -1,20 +1,23 @@
 # Mobile Resume
+<img width="100" src="https://github.com/thomashzhu/mobile-resume/raw/master/assets/icon.png">
 
 Turning my resume into a mobile app...
 
 <hr />
 
 ## Getting started
-1. Clone this repository
-   ```
-   git clone https://github.com/thomashzhu/mobile-resume.git
-   ```
-2. Navigate to the root directory and run `yarn`
-3. Create a file named secrets.ts inside of src/values and insert the following line:
+2. Create a file named **secrets.ts** inside of src/values and insert the following line:
    ```
    export const MAP_BOX_API = <YOUR_MAP_BOX_API_KEY>;
    ```
-4. Build and run the app
+3. Go to the root folder, and run `yarn; yarn start`
+4. Build and run the app:
+    - iOS
+      1. Navigate to the **ios** folder, and run `pod install`
+      2. Open Xcode and build the app
+    - Android
+      1. Open the **android** folder in Android Studio
+      2. Build the app
 
 ## Preview
 ||||
