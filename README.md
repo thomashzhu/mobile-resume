@@ -6,6 +6,10 @@ Turning my resume into a mobile app...
 <hr />
 
 ## Getting started
+1. Clone this repository
+   ```
+   git clone https://github.com/thomashzhu/mobile-resume.git
+   ```
 2. Create a file named **secrets.ts** inside of src/values and insert the following line:
    ```
    export const MAP_BOX_API = <YOUR_MAP_BOX_API_KEY>;
